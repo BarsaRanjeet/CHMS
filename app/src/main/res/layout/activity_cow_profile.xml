@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cattle Name : "/>
+            android:text="Cattle Name is : "/>
         <EditText
             android:id="@+id/cattle_name"
             android:layout_width="250dp"
