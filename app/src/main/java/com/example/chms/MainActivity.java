@@ -12,33 +12,11 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView listView;
-
-    public Integer[] listImage = {
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo,
-            R.drawable.logo
-    };
-    public String[] names = {
-            "Ranjit",
-            "Mehul",
-            "Satish",
-            "Govind",
-            "Vipul",
-            "Rahul"
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ManageList adapter = new ManageList(this,names,listImage);
-        listView = (ListView)findViewById(R.id.listView);
-        listView.setAdapter(adapter);
     }
 
 }
