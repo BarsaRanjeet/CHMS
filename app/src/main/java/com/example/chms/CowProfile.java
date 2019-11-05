@@ -14,14 +14,5 @@ public class CowProfile extends AppCompatActivity {
         setContentView(R.layout.activity_cow_profile);
 
 
-
-    }
-    public void createProfile(View v)
-    {
-
-        CHMSDatabase chms = new CHMSDatabase(this);
-        SQLiteDatabase db = chms.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("");
     }
 }
