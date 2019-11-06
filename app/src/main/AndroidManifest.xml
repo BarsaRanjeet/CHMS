@@ -9,16 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OwnerRegistration"></activity>
-        <activity android:name=".CattleListView" />
-        <activity android:name=".CattleList">
+        <activity android:name=".InseminationListView"></activity>
+        <activity android:name=".Insemination">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CowProfile"></activity>
+        <activity android:name=".AddCattle" />
+        <activity android:name=".OwnerRegistration" />
+        <activity android:name=".CattleListView" />
+        <activity android:name=".CattleList" />
+        <activity android:name=".CowProfile" />
         <activity android:name=".MainActivity" />
     </application>
 

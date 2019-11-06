@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center"
+    tools:context=".InseminationListView">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cattle id : "/>
+            <TextView
+                android:id="@+id/cattleId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0123456"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Insemination date : "/>
+            <TextView
+                android:id="@+id/inseminationDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="02/12/2019"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
