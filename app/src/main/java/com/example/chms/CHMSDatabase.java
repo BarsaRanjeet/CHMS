@@ -20,5 +20,4 @@ public class CHMSDatabase extends SQLiteOpenHelper
         db.execSQL("DROP TABLE IF EXISTS cow_profile");
         onCreate(db);
     }
-    public void insert(){}
 }
