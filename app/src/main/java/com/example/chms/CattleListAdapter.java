@@ -12,14 +12,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class CattleListAdpter extends ArrayAdapter
+public class CattleListAdapter extends ArrayAdapter
 {
     private final Activity context;
     private final Integer[] cattleImages;
     private final String[] cattleNames;
     private final String[] cattleStates;
 
-    public CattleListAdpter(Activity context, Integer[] cattleImages, String[] cattleNames, String[] cattleStates)
+    public CattleListAdapter(Activity context, Integer[] cattleImages, String[] cattleNames, String[] cattleStates)
     {
         super(context,R.layout.activity_cattle_list_view,cattleNames);
         this.context = context;
@@ -35,9 +35,9 @@ public class CattleListAdpter extends ArrayAdapter
         LayoutInflater inflater = context.getLayoutInflater();
         View view = inflater.inflate(R.layout.activity_cattle_list_view,null,true);
 
-        ImageView cattleImage = (ImageView) findViewById(R.id.cattleImage);
-        TextView cattleName = (TextView)findViewById(R.id.cattleName);
-        TextView cattleState = (TextView)findViewById(R.id.cattleState);
+        ImageView cattleImage = view.findViewById(R.id.cattleImage);
+        TextView cattleName = view.findViewById(R.id.cattleName);
+        TextView cattleState = view.findViewById(R.id.cattleState);
 
         cattleImage.setImageResource(cattleImages[position]);
         cattleName.setText(cattleNames[position]);

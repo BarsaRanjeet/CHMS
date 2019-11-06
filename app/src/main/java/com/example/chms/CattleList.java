@@ -10,14 +10,32 @@ public class CattleList extends AppCompatActivity {
     public static Integer [] cattleImages = {
             R.drawable.ic_launcher_background,
             R.color.colorPrimary,
+            R.color.colorPrimaryDark,
+            R.drawable.ic_launcher_background,
+            R.color.colorPrimary,
+            R.color.colorPrimaryDark,
+            R.drawable.ic_launcher_background,
+            R.color.colorPrimary,
             R.color.colorPrimaryDark
     };
     public static String [] cattleNames = {
             "Mamu ki Pyari",
             "Vadil ki pyari",
-            "Gun name(Unknown)"
+            "Gum name(Unknown)",
+            "Mamu ki Pyari",
+            "Vadil ki pyari",
+            "Gum name(Unknown)",
+            "Mamu ki Pyari",
+            "Vadil ki pyari",
+            "Gum name(Unknown)"
     };
     public static String [] cattleStates ={
+            "Walking",
+            "Eating",
+            "Resting",
+            "Walking",
+            "Eating",
+            "Resting",
             "Walking",
             "Eating",
             "Resting"
@@ -28,7 +46,7 @@ public class CattleList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cattle_list);
 
-        CattleListAdpter adapter = new CattleListAdpter(this,cattleImages,cattleNames,cattleStates);
+        CattleListAdapter adapter = new CattleListAdapter(this,cattleImages,cattleNames,cattleStates);
         ListView listView = (ListView)findViewById(R.id.cattleList);
         listView.setAdapter(adapter);
     }
