@@ -18,114 +18,112 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/border"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:text="Name "/>
+
         <EditText
             android:id="@+id/name"
-            android:layout_width="265dp"
-            android:layout_height="wrap_content"
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:drawableLeft="@drawable/person"
             android:hint="Owner name"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:text="Address "/>
+
         <EditText
             android:id="@+id/address"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:hint=""/>
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:drawableLeft="@drawable/location"
+            android:hint="Address"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:text="Contact no "/>
         <EditText
             android:id="@+id/contact"
-            android:layout_width="225dp"
-            android:layout_height="wrap_content"
-            android:hint=""/>
+            android:layout_width="260dp"
+            android:background="@null"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/phone"
+            android:hint="Contact number"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:text="Aadhar id "/>
         <EditText
             android:id="@+id/aadhar"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
+            android:layout_width="260dp"
+            android:layout_height="40dp"
             android:inputType="number"
-            android:hint=""/>
+            android:background="@null"
+            android:hint="Aadhar number"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:background="@drawable/border"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:text="Pincode "/>
         <EditText
             android:id="@+id/pincode"
-            android:layout_width="255dp"
-            android:layout_height="wrap_content"
-            android:hint=""/>
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:hint="Pincode"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
         android:orientation="horizontal">
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:text="Long "/>
+            android:background="@drawable/border">
         <EditText
-            android:id="@+id/longt"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:hint=""/>
-        <TextView
+            android:id="@+id/lon"
+            android:layout_width="130dp"
+            android:background="@null"
+            android:layout_height="40dp"
+            android:hint="Longitude"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:text="Let "/>
+            android:background="@drawable/border"
+            android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/let"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:hint=""/>
+            android:id="@+id/lat"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:hint="Latitude"/>
+        </LinearLayout>
     </LinearLayout>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:text="Get started"
+        android:background="@color/colorPrimary"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"/>
 
