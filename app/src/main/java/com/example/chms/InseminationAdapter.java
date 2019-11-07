@@ -15,6 +15,7 @@ public class InseminationAdapter extends ArrayAdapter {
     private final Activity context;
     private final Integer[] cattleIds;
     private final String[] inseminationDates;
+
     public InseminationAdapter(Activity context,Integer[] cattleIds,String[] inseminationDates) {
         super(context,R.layout.activity_insemination_list_view,inseminationDates);
         this.context = context;
@@ -29,7 +30,7 @@ public class InseminationAdapter extends ArrayAdapter {
         View view = inflater.inflate(R.layout.activity_insemination_list_view,null,true);
         TextView cattleId = view.findViewById(R.id.cattleId);
         TextView inseminationDate = view.findViewById(R.id.inseminationDate);
-        cattleId.setText(cattleIds[position]);
+        cattleId.setText(cattleIds[position].toString());
         inseminationDate.setText(inseminationDates[position]);
 
         return view;
