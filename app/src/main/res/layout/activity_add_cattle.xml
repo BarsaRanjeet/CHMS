@@ -5,66 +5,104 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background2"
     tools:context=".AddCattle">
 
     <EditText
         android:id="@+id/ucin"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:hint="Enter UCIN"/>
+        android:background="@drawable/border"
+        android:hint=" Enter UCIN "/>
     <EditText
         android:id="@+id/cattleName"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
+        android:layout_height="40dp"
         android:layout_gravity="center"
-        android:hint="Enter cattle name"/>
+        android:hint=" Enter cattle name "/>
     <EditText
         android:id="@+id/policy"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
         android:layout_gravity="center"
-        android:hint="Cattle policy"/>
+        android:hint=" Cattle policy "/>
     <EditText
         android:id="@+id/age"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
         android:layout_gravity="center"
-        android:hint="Age (in year)"/>
+        android:hint=" Age (in year) "/>
     <EditText
         android:id="@+id/weight"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_gravity="center"
-        android:hint="Weight (in kg)"/>
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
+        android:hint=" Weight (in kg) "/>
     <EditText
         android:id="@+id/noOfChild"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
         android:layout_gravity="center"
-        android:hint="No of child"/>
+        android:hint=" No of child "/>
     <EditText
         android:id="@+id/father"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
         android:layout_gravity="center"
-        android:hint="Father id"/>
+        android:hint=" Father id "/>
     <EditText
         android:id="@+id/mother"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_gravity="center"
-        android:hint="Mother id"/>
-
+        android:background="@drawable/border"
+        android:layout_marginTop="10dp"
+        android:hint=" Mother id "/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:background="@drawable/border">
     <Spinner
         android:id="@+id/breed"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_gravity="center" />
-    <Button
-        android:id="@+id/addCattleBtn"
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:background="@drawable/border">
+        <Spinner
+            android:id="@+id/status"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/addCattleBtn"
+        android:layout_width="250dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:text="Add cattle"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffff"
         android:layout_gravity="center"/>
 </LinearLayout>

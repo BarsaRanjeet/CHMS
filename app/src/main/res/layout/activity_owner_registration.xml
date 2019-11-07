@@ -28,7 +28,7 @@
             android:layout_height="40dp"
             android:background="@null"
             android:drawableLeft="@drawable/person"
-            android:hint="Owner name"/>
+            android:hint=" Owner name"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
             android:layout_height="40dp"
             android:background="@null"
             android:drawableLeft="@drawable/location"
-            android:hint="Address"/>
+            android:hint=" Address"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
             android:background="@null"
             android:layout_height="40dp"
             android:drawableLeft="@drawable/phone"
-            android:hint="Contact number"/>
+            android:hint=" Contact number"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
             android:layout_height="40dp"
             android:inputType="number"
             android:background="@null"
-            android:hint="Aadhar number"/>
+            android:hint=" Aadhar number"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
             android:layout_width="260dp"
             android:layout_height="40dp"
             android:background="@null"
-            android:hint="Pincode"/>
+            android:hint=" Pincode"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -105,7 +105,7 @@
             android:layout_width="130dp"
             android:background="@null"
             android:layout_height="40dp"
-            android:hint="Longitude"/>
+            android:hint=" Longitude"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
             android:layout_width="130dp"
             android:layout_height="40dp"
             android:background="@null"
-            android:hint="Latitude"/>
+            android:hint=" Latitude"/>
         </LinearLayout>
     </LinearLayout>
     <Button
@@ -125,6 +125,7 @@
         android:text="Get started"
         android:background="@color/colorPrimary"
         android:layout_marginTop="20dp"
+        android:textColor="#fff"
         android:layout_gravity="center"/>
 
 </LinearLayout>
