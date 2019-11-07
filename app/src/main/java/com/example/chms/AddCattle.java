@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 public class AddCattle extends AppCompatActivity {
-    String[] breed = {"caw type 1","caw type 2","caw type 3"};
+    String[] breed = {"Select breed","caw type 2","caw type 3"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
