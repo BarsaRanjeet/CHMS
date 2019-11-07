@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddCattle">
+
+    <EditText
+        android:id="@+id/ucin"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Enter UCIN"/>
+    <EditText
+        android:id="@+id/cattleName"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Enter cattle name"/>
+    <EditText
+        android:id="@+id/policy"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Cattle policy"/>
+    <EditText
+        android:id="@+id/age"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Age (in year)"/>
+    <EditText
+        android:id="@+id/weight"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Weight (in kg)"/>
+    <EditText
+        android:id="@+id/noOfChild"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="No of child"/>
+    <EditText
+        android:id="@+id/father"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Father id"/>
+    <EditText
+        android:id="@+id/mother"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Mother id"/>
+
+    <Spinner
+        android:id="@+id/breed"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+    <Button
+        android:id="@+id/addCattleBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add cattle"
+        android:layout_gravity="center"/>
+</LinearLayout>
