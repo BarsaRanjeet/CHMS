@@ -9,8 +9,8 @@ import android.widget.ListView;
 
 public class Insemination extends AppCompatActivity {
 
-    public  static Integer[] cattleIds ={123456,78910};
-    public static String[] inseminationDates = {"10/12/2019","20/12/2019"};
+    public  static Integer[] cattleIds ={5043,5612};
+    public static String[] inseminationDates = {"9/10/2019","30/10/2019"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
