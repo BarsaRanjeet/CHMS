@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -75,5 +76,10 @@ public class InseminationNewEntry extends AppCompatActivity {
         String myFormat = "dd/MM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ENGLISH);
         edittext.setText(sdf.format(myCalendar.getTime()));
+    }
+    public void add(View v)
+    {
+        Intent i = new Intent(this,Insemination.class);
+        startActivity(i);
     }
 }

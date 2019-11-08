@@ -4,6 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".CattleProfile">
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/cow5"/>
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Cattle id : 1234"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Cattle name : Bhuri "
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Policy : 1234"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Age : "
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Weight : "
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="No of child : 1234"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Mother id : 1234"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Father id : 1234"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Breed : 1234"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insemination"
+            android:onClick="insemination"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Milk production"/>
+    </LinearLayout>
 </LinearLayout>

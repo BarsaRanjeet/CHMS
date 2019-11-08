@@ -58,5 +58,6 @@
         android:background="@color/colorPrimary"
         android:textColor="#ffff"
         android:layout_gravity="center"
-        android:text="Add"/>
+        android:text="Add"
+        android:onClick="add"/>
 </LinearLayout>
