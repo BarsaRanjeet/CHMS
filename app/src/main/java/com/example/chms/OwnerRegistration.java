@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class OwnerRegistration extends AppCompatActivity {
     private double latitude, longitude;
@@ -48,6 +49,7 @@ public class OwnerRegistration extends AppCompatActivity {
             longitude = location.getLongitude();
             txtLatitude.setText(latitude+"");
             txtLongitude.setText(longitude+"");
+            Toast.makeText(OwnerRegistration.this, ""+latitude+" "+longitude, Toast.LENGTH_SHORT).show();
         }
 
         @Override
