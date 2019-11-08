@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CattleProfile">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -79,4 +88,7 @@
             android:layout_height="wrap_content"
             android:text="Milk production"/>
     </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

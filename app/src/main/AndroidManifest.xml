@@ -4,16 +4,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo2"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CattleProfile"></activity>
-        <activity android:name=".InseminationNewEntry"></activity>
-        <activity android:name=".InseminationListView" />
-        <activity android:name=".Insemination"></activity>
-        <activity android:name=".AddCattle"></activity>
+        <activity android:name=".CattleProfile" android:label="Cattle Profile"></activity>
+        <activity android:name=".InseminationNewEntry" android:label="Insemination New Entry"></activity>
+        <activity android:name=".InseminationListView"  />
+        <activity android:name=".Insemination" ></activity>
+        <activity android:name=".AddCattle" android:label="Add Cattle"></activity>
         <activity android:name=".OwnerRegistration">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CattleListView" />
-        <activity android:name=".CattleList"></activity>
+        <activity android:name=".CattleList" android:label="Cattle List"></activity>
         <activity android:name=".MainActivity" />
     </application>
 
