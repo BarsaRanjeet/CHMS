@@ -34,43 +34,43 @@
     <TextView
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Policy : 1234"
+        android:text="Policy : Not available"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"/>
     <TextView
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Age : "
+        android:text="Age : 6 year"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"/>
     <TextView
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Weight : "
+        android:text="Weight : 720 kg"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"/>
     <TextView
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="No of child : 1234"
+        android:text="No of child : 2"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"/>
     <TextView
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Mother id : 1234"
+        android:text="Mother id : 5890"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"/>
     <TextView
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Father id : 1234"
+        android:text="Father id : 6880"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"/>
     <TextView
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Breed : 1234"
+        android:text="Breed : Rathi"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"/>
     <LinearLayout
