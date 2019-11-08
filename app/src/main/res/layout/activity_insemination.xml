@@ -14,7 +14,8 @@
         android:text="New Entry"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:drawableRight="@drawable/add"/>
+        android:drawableRight="@drawable/add"
+        android:onClick="newEntry"/>
     <ListView
         android:id="@+id/inseminations"
         android:layout_width="match_parent"

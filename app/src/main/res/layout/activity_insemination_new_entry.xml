@@ -8,11 +8,34 @@
     android:background="@drawable/background2"
     tools:context=".InseminationNewEntry">
 
+
+    <EditText
+        android:id="@+id/cattleId"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:background="@drawable/border"
+        android:editable="false"
+        android:hint="Cattle Unique ID No"
+        />
+    <EditText
+        android:id="@+id/cattleName"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:background="@drawable/border"
+        android:editable="false"
+        android:hint=" Cattle Name"
+        />
     <EditText
         android:id="@+id/date"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:clickable="true"
         android:background="@drawable/border"
@@ -58,5 +81,6 @@
         android:background="@color/colorPrimary"
         android:textColor="#ffff"
         android:layout_gravity="center"
-        android:text="Add"/>
+        android:text="Add"
+        android:onClick="add"/>
 </LinearLayout>

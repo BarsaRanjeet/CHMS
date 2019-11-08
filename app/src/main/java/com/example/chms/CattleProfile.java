@@ -6,12 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class InseminationListView extends AppCompatActivity {
+public class CattleProfile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_insemination_list_view);
+        setContentView(R.layout.activity_cattle_profile);
     }
-
+    public void insemination(View v)
+    {
+        Intent i = new Intent(this,Insemination.class);
+        startActivity(i);
+    }
 }
