@@ -104,5 +104,6 @@
         android:text="Add cattle"
         android:background="@color/colorPrimary"
         android:textColor="#ffff"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:onClick="addCattle"/>
 </LinearLayout>

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background2"
+    android:scrollbars="vertical"
     tools:context=".OwnerRegistration">
 
     <ImageView
@@ -126,6 +127,7 @@
         android:background="@color/colorPrimary"
         android:layout_marginTop="20dp"
         android:textColor="#fff"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:onClick="getStartedBtn"/>
 
 </LinearLayout>

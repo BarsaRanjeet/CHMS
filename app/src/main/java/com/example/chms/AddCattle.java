@@ -2,7 +2,9 @@ package com.example.chms;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -16,5 +18,10 @@ public class AddCattle extends AppCompatActivity {
         Spinner spinner = (Spinner)findViewById(R.id.breed);
         breedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(breedAdapter);
+    }
+    public void addCattle(View v)
+    {
+        Intent i = new Intent(this,CattleList.class);
+        startActivity(i);
     }
 }

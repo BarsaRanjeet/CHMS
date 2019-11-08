@@ -7,7 +7,13 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     tools:context=".CattleList">
-
+    <Button
+        android:id="@+id/addBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Cattle"
+        android:drawableRight="@drawable/add"
+        android:onClick="addCattle" />
     <ListView
         android:id="@+id/cattleList"
         android:layout_width="match_parent"
