@@ -12,7 +12,7 @@
         <activity android:name=".CattleProfile" android:label="Cattle Profile"></activity>
         <activity android:name=".InseminationNewEntry" android:label="Insemination New Entry"></activity>
         <activity android:name=".InseminationListView"  />
-        <activity android:name=".Insemination" ></activity>
+        <activity android:name=".Insemination" android:label="Insemination"></activity>
         <activity android:name=".AddCattle" android:label="Add Cattle"></activity>
         <activity android:name=".OwnerRegistration">
             <intent-filter>
