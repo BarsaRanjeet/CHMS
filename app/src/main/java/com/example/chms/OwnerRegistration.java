@@ -3,20 +3,23 @@ package com.example.chms;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class OwnerRegistration extends AppCompatActivity {
     private double latitude, longitude;
-    private EditText txtLatitude, txtLongitude;
+    private EditText txtLatitude, txtLongitude,txtName,txtAddress,txtContact,txtAdhar,txtPincode;
     private LocationManager mLocationManager;
 
     @Override
@@ -34,10 +37,29 @@ public class OwnerRegistration extends AppCompatActivity {
                 20, mLocationListener);
         txtLatitude = findViewById(R.id.lat);
         txtLongitude = findViewById(R.id.lon);
-
+        txtName = findViewById(R.id.name);
+        txtAddress = findViewById(R.id.address);
+        txtAdhar = findViewById(R.id.aadhar);
+        txtContact = findViewById(R.id.contact);
+        txtPincode = findViewById(R.id.pincode);
     }
     public void getStartedBtn(View v)
     {
+        CHMSDatabase dbHelper = new CHMSDatabase(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("name", String.valueOf(txtName.getText()));
+        values.put("address", String.valueOf(txtAddress.getText()));
+        values.put("contact_no", String.valueOf(txtContact.getText()));
+        values.put("adhar_no", String.valueOf(txtAdhar.getText()));
+        values.put("pincode", String.valueOf(txtAdhar.getText()));
+
+        long count = db.insert("owner_profile",null,values);
+        if(count > 0)
+        {
+            Toast.makeText(this, "Failed to insert", Toast.LENGTH_SHORT).show();
+        }
         Intent i = new Intent(this,CattleList.class);
         startActivity(i);
 
