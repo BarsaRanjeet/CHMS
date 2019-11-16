@@ -12,8 +12,8 @@ public class CHMSDatabase extends SQLiteOpenHelper
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE owner_profile(id int PRIMARY KEY AUTOINCREMENT,name varchar(20),address varchar(40),contact_no varchar(11),adhar_no varchar(17),pincode varchar(6),child_no int(3),latitude double,longitude double)");
-        db.execSQL("CREATE TABLE cow_profile(cuin int PRIMARY KEY,name varchar(20),policy varchar(20),location varchar(20),age int(3),weight float,child_no int(3),gotra varchar(10),breed varchar(15),owner varchar(20),aadhar int(16))");
+        db.execSQL("CREATE TABLE owner_profile(id integer PRIMARY KEY ,name varchar(20),address varchar(40),contact_no varchar(11),adhar_no varchar(17),pincode varchar(6),child_no int(3),latitude double,longitude double)");
+        db.execSQL("CREATE TABLE cow_profile(cuin integer PRIMARY KEY,name varchar(20),policy varchar(20),location varchar(20),age int(3),weight float,child_no int(3),gotra varchar(10),breed varchar(15),owner varchar(20),aadhar int(16))");
     }
 
     @Override
