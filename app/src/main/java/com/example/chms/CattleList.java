@@ -3,6 +3,7 @@ package com.example.chms;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -36,6 +37,14 @@ public class CattleList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cattle_list);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("CHMS",MODE_PRIVATE);
+        boolean isRegistered = sharedPreferences.getBoolean("isRegistered",false);
+        if(!isRegistered)
+        {
+            Intent intent = new Intent(this, OwnerRegistration.class);
+            startActivity(intent);
+        }
 
         CattleListAdapter adapter = new CattleListAdapter(this,cattleImages,cattleNames,cattleStates);
         ListView listView = (ListView)findViewById(R.id.cattleList);
