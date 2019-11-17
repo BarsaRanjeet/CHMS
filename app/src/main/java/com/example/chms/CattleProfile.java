@@ -18,4 +18,9 @@ public class CattleProfile extends AppCompatActivity {
         Intent i = new Intent(this,Insemination.class);
         startActivity(i);
     }
+    public void milkProduction(View v)
+    {
+        Intent i = new Intent(this,MilkProduction.class);
+        startActivity(i);
+    }
 }

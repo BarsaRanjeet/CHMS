@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background2"
+    tools:context=".MilkNewEntry">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:layout_gravity="center">
+        <Spinner
+            android:id="@+id/milkTime"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+    <EditText
+        android:id="@+id/milkQty"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
+        android:layout_gravity="center"
+        android:hint=" Milk quantity"
+        android:inputType="text"/>
+    <EditText
+        android:id="@+id/milkNote"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:background="@drawable/border"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:hint=" Note"
+        android:inputType="text|textMultiLine"
+        android:gravity="top"/>
+    <Button
+        android:id="@+id/milkAddBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffff"
+        android:layout_gravity="center"
+        android:text="Add"
+        android:onClick="add"/>
+</LinearLayout>

@@ -11,12 +11,17 @@ import android.widget.Spinner;
 public class AddCattle extends AppCompatActivity {
     String[] breed = {"Select breed",
             "Gir",
-            "Jersey",
             "Surti",
             "Jaffrabadi",
             "Mahesana"
     };
-    String[] status = {"Select status"};
+    String[] status = {"Select status",
+            "Milking",
+            "Non-Milking",
+            "Pregnant",
+            "Non-well",
+            "Under observation"
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
