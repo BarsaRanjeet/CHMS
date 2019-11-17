@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
@@ -26,6 +27,14 @@ public class OwnerRegistration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_registration);
+
+        txtLatitude = findViewById(R.id.lat);
+        txtLongitude = findViewById(R.id.lon);
+        txtName = findViewById(R.id.name);
+        txtAddress = findViewById(R.id.address);
+        txtAdhar = findViewById(R.id.aadhar);
+        txtContact = findViewById(R.id.contact);
+        txtPincode = findViewById(R.id.pincode);
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -35,13 +44,7 @@ public class OwnerRegistration extends AppCompatActivity {
         }
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60,
                 20, mLocationListener);
-        txtLatitude = findViewById(R.id.lat);
-        txtLongitude = findViewById(R.id.lon);
-        txtName = findViewById(R.id.name);
-        txtAddress = findViewById(R.id.address);
-        txtAdhar = findViewById(R.id.aadhar);
-        txtContact = findViewById(R.id.contact);
-        txtPincode = findViewById(R.id.pincode);
+
     }
     public void getStartedBtn(View v)
     {
@@ -49,7 +52,8 @@ public class OwnerRegistration extends AppCompatActivity {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("name", String.valueOf(txtName.getText()));
+        String name = txtName.getText().toString();
+        values.put("name", name);
         values.put("address", String.valueOf(txtAddress.getText()));
         values.put("contact_no", String.valueOf(txtContact.getText()));
         values.put("adhar_no", String.valueOf(txtAdhar.getText()));
@@ -58,10 +62,20 @@ public class OwnerRegistration extends AppCompatActivity {
         long count = db.insert("owner_profile",null,values);
         if(count > 0)
         {
-            Toast.makeText(this, "Failed to insert", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Registration Successfull", Toast.LENGTH_SHORT).show();
+            SharedPreferences sharedPreferences = getSharedPreferences("CHMS",MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isRegistered",true);
+            editor.putString("owner_name",name);
+            editor.commit();
+            Intent i = new Intent(this,CattleList.class);
+            startActivity(i);
         }
-        Intent i = new Intent(this,CattleList.class);
-        startActivity(i);
+        else
+        {
+            Toast.makeText(this, "Registration Failed", Toast.LENGTH_SHORT).show();
+
+        }
 
     }
     private final LocationListener mLocationListener = new LocationListener() {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Insemination">
+    tools:context=".MilkProduction">
 
     <Button
         android:id="@+id/newBtn"
@@ -16,7 +16,7 @@
         android:drawableRight="@drawable/add"
         android:onClick="newEntry"/>
     <ListView
-        android:id="@+id/inseminations"
+        android:id="@+id/milkDetail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

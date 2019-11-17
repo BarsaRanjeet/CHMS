@@ -15,9 +15,8 @@
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:clickable="true"
+        android:inputType="number"
         android:background="@drawable/border"
-        android:editable="false"
         android:hint="Cattle Unique ID No"
         />
     <EditText
@@ -26,9 +25,8 @@
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:clickable="true"
+        android:inputType="text"
         android:background="@drawable/border"
-        android:editable="false"
         android:hint=" Cattle Name"
         />
     <EditText
@@ -38,8 +36,9 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:clickable="true"
-        android:background="@drawable/border"
         android:editable="false"
+        android:focusable="false"
+        android:background="@drawable/border"
         android:hint=" Insemination date"/>
     <EditText
         android:id="@+id/time"
@@ -48,8 +47,9 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/border"
         android:layout_gravity="center"
-        android:editable="false"
         android:clickable="true"
+        android:editable="false"
+        android:focusable="false"
         android:hint=" Insemination time"/>
     <LinearLayout
         android:layout_width="wrap_content"
