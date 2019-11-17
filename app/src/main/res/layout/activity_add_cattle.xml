@@ -15,6 +15,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <Button
+                android:id="@+id/cattleImage"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="Cattle Image"
+                android:drawableRight="@drawable/camera"
+                android:onClick="addCattle" />
     <EditText
         android:id="@+id/ucin"
         android:layout_width="250dp"
@@ -31,6 +40,8 @@
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:hint=" Enter cattle name "/>
+
+
     <EditText
         android:id="@+id/policy"
         android:layout_width="250dp"
