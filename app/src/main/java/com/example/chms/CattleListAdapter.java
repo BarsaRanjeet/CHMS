@@ -15,11 +15,11 @@ import androidx.annotation.Nullable;
 public class CattleListAdapter extends ArrayAdapter
 {
     private final Activity context;
-    private final Integer[] cattleImages;
+    private final String[] cattleImages;
     private final String[] cattleNames;
     private final String[] cattleStates;
 
-    public CattleListAdapter(Activity context, Integer[] cattleImages, String[] cattleNames, String[] cattleStates)
+    public CattleListAdapter(Activity context, String[] cattleImages, String[] cattleNames, String[] cattleStates)
     {
         super(context,R.layout.activity_cattle_list_view,cattleNames);
         this.context = context;
@@ -40,7 +40,7 @@ public class CattleListAdapter extends ArrayAdapter
         TextView cattleState = view.findViewById(R.id.cattleState);
 
 
-        cattleImage.setImageResource(cattleImages[position]);
+        //cattleImage.setImageResource(cattleImages[position]);
         cattleName.setText(cattleNames[position]);
         cattleState.setText(cattleStates[position]);
 

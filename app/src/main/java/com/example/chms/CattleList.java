@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,27 +13,9 @@ import android.widget.ListView;
 
 public class CattleList extends AppCompatActivity {
 
-    public static Integer [] cattleImages = {
-            R.drawable.cow1,
-            R.drawable.cow2,
-            R.drawable.cow3,
-            R.drawable.cow4,
-            R.drawable.cow5
-    };
-    public static String [] cattleNames = {
-            " Cattle id : 1234 ",
-            " Cattle id : 5678 ",
-            " Cattle id : 9012 ",
-            " Cattle id : 3456 ",
-            " Cattle id : 7890 "
-    };
-    public static String [] cattleStates ={
-            " Next heat date : 15/11/2019 ",
-            " Next heat date : 20/11/2019 ",
-            " Next heat date : 25/11/2019 ",
-            " Next heat date : 27/11/2019 ",
-            " Next heat date : 30/11/2019 ",
-    };
+    public static String [] cattleImages = null;
+    public static String [] cattleIds = null;
+    public static String [] cattleNextHeatDates = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +30,25 @@ public class CattleList extends AppCompatActivity {
             startActivity(intent);
         }
 
-        CattleListAdapter adapter = new CattleListAdapter(this,cattleImages,cattleNames,cattleStates);
+        CHMSDatabase dbHelper = new CHMSDatabase(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        Cursor cursorCattles = db.rawQuery("SELECT * FROM cattle_profile",new String[]{});
+        cattleImages = new String[cursorCattles.getCount()];
+        cattleIds = new String[cursorCattles.getCount()];
+        cattleNextHeatDates = new String[cursorCattles.getCount()];
+
+        cursorCattles.moveToFirst();
+        for(int i=0;!cursorCattles.isLast();i++)
+        {
+            cursorCattles.moveToNext();
+            cattleImages[i] = cursorCattles.getString(cursorCattles.getColumnIndex("cattle_image"));
+            cattleIds[i] = "Cattle id: "+cursorCattles.getString(cursorCattles.getColumnIndex("cattle_name"));
+            cattleNextHeatDates[i] = "Next heat on: "+cursorCattles.getString(cursorCattles.getColumnIndex("last_heat_on"));
+
+        }
+
+        CattleListAdapter adapter = new CattleListAdapter(this,cattleImages,cattleIds,cattleNextHeatDates);
         ListView listView = (ListView)findViewById(R.id.cattleList);
         listView.setAdapter(adapter);
 

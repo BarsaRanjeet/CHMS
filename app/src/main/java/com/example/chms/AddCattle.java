@@ -106,8 +106,10 @@ public class AddCattle extends AppCompatActivity {
         long count = db.insert("cattle_profile",null,values);
         if(count > 0){
             Toast.makeText(this, "Cattle Details Added Successfull", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this,CattleList.class);
+            startActivity(intent);
         }else{
-            Toast.makeText(this, "Failed to Add Cattle Details", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Already Exist", Toast.LENGTH_SHORT).show();
         }
         db.close();
 
@@ -115,6 +117,8 @@ public class AddCattle extends AppCompatActivity {
         try {
             out = new FileOutputStream(imageFileName);
             bmpCapturedImage.compress(Bitmap.CompressFormat.JPEG,100,out);
+            bmpCapturedImage.recycle();
+            bmpCapturedImage = null;
             out.close();
         } catch (Exception e) {
             e.printStackTrace();
