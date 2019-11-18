@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.chms">
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo2"
@@ -10,20 +12,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CattleProfile" android:label="Cattle Profile"></activity>
-        <activity android:name=".InseminationNewEntry" android:label="Insemination New Entry"></activity>
-        <activity android:name=".InseminationListView"  />
-        <activity android:name=".Insemination" ></activity>
-        <activity android:name=".AddCattle" android:label="Add Cattle"></activity>
+        <activity android:name=".MilkProductionView"></activity>
+        <activity android:name=".MilkNewEntry" android:label="Milk new entry" />
+        <activity android:name=".MilkProduction" android:label="Milk production"/>
+        <activity
+            android:name=".CattleProfile"
+            android:label="Cattle Profile" />
+        <activity
+            android:name=".InseminationNewEntry"
+            android:label="Insemination New Entry" />
+        <activity android:name=".InseminationListView" />
+        <activity
+            android:name=".Insemination"
+            android:label="Insemination" />
+        <activity
+            android:name=".AddCattle"
+            android:label="Add Cattle" />
         <activity android:name=".OwnerRegistration">
+
+        </activity>
+        <activity android:name=".CattleListView" />
+        <activity
+            android:name=".CattleList"
+            android:label="Cattle List" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".CattleListView" />
-        <activity android:name=".CattleList" android:label="Cattle List"></activity>
         <activity android:name=".MainActivity" />
     </application>
 

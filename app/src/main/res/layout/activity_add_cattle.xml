@@ -15,12 +15,24 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <Button
+                android:id="@+id/capture_image"
+                android:background="@drawable/border_gray"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:paddingRight="2dp"
+                android:layout_gravity="center"
+                android:text="Cattle Image"
+                android:drawableRight="@drawable/camera"
+                android:onClick="capturePhoto" />
     <EditText
         android:id="@+id/ucin"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
+        android:inputType="number"
         android:background="@drawable/border"
         android:hint=" Enter UCIN "/>
     <EditText
@@ -30,13 +42,17 @@
         android:background="@drawable/border"
         android:layout_height="40dp"
         android:layout_gravity="center"
+        android:inputType="text"
         android:hint=" Enter cattle name "/>
+
+
     <EditText
         android:id="@+id/policy"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/border"
+        android:inputType="text"
         android:layout_gravity="center"
         android:hint=" Cattle policy "/>
     <EditText
@@ -46,6 +62,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/border"
         android:layout_gravity="center"
+        android:inputType="number"
         android:hint=" Age (in year) "/>
     <EditText
         android:id="@+id/weight"
@@ -54,6 +71,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:background="@drawable/border"
+        android:inputType="numberDecimal"
         android:hint=" Weight (in kg) "/>
     <EditText
         android:id="@+id/noOfChild"
@@ -62,6 +80,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/border"
         android:layout_gravity="center"
+        android:inputType="number"
         android:hint=" No of child "/>
     <EditText
         android:id="@+id/father"
@@ -70,6 +89,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/border"
         android:layout_gravity="center"
+        android:inputType="number"
         android:hint=" Father id "/>
     <EditText
         android:id="@+id/mother"
@@ -78,6 +98,7 @@
         android:layout_gravity="center"
         android:background="@drawable/border"
         android:layout_marginTop="10dp"
+        android:inputType="number"
         android:hint=" Mother id "/>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -112,6 +133,7 @@
         android:background="@color/colorPrimary"
         android:textColor="#ffff"
         android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
         android:onClick="addCattle"/>
         </LinearLayout>
 
