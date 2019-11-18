@@ -12,12 +12,13 @@ public class CHMSDatabase extends SQLiteOpenHelper
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE owner_profile(id int PRIMARY KEY AUTOINCREMENT,name varchar(20),address varchar(40),contact_no varchar(11),adhar_no varchar(17),pincode varchar(6),child_no int(3),latitude double,longitude double)");
-        db.execSQL("CREATE TABLE cattle_profile(cuin int PRIMARY KEY,cattle_image varchar(30),cattle_name varchar(20),cattle_policy varchar(20),age int(3),weight double,no_of_child int(3),mother_id int,father_id int,breed varchar(20),status varchar(20))");
+        db.execSQL("CREATE TABLE owner_profile(id integer PRIMARY KEY AUTOINCREMENT,name varchar(20),address varchar(40),contact_no varchar(11),adhar_no varchar(17),pincode varchar(6),child_no integer(3),latitude double,longitude double)");
+        db.execSQL("CREATE TABLE cattle_profile(cuin integer PRIMARY KEY,cattle_image varchar(30),cattle_name varchar(20),cattle_policy varchar(20),age integer(3),weight double,no_of_child integer(3),mother_id integer,father_id integer,breed varchar(20),status varchar(20))");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS owner_profile");
         db.execSQL("DROP TABLE IF EXISTS cow_profile");
         onCreate(db);
     }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
@@ -72,31 +73,43 @@ public class AddCattle extends AppCompatActivity {
     }
     public void addCattle(View v)
     {
-        ContentValues values = new ContentValues();
-        values.put("cuin",Integer.parseInt(txtUcin.getText().toString()));
-        values.put("cattle_name",txtcattleName.getText().toString());
-        values.put("cattle_policy",txtPolicy.getText().toString());
-        values.put("age",Integer.parseInt(txtAge.getText().toString()));
-        values.put("weight",Double.parseDouble(txtWeight.getText().toString()));
-        values.put("no_of_child",Integer.parseInt(txtNoOfChild.getText().toString()));
+
         String motherId = txtMotherId.getText().toString();
         String fatherId = txtFatherId.getText().toString();
-
-
+        String policy = txtPolicy.getText().toString();
+        String noOfChild = txtNoOfChild.getText().toString();
         if(motherId.isEmpty())
             motherId = "0";
         if(fatherId.isEmpty())
             fatherId = "0";
+        if(policy.isEmpty())
+            policy = "0";
+        if(noOfChild.isEmpty())
+            noOfChild = "0";
 
-
+        ContentValues values = new ContentValues();
+        values.put("cuin",Integer.parseInt(txtUcin.getText().toString()));
+        values.put("cattle_name",txtcattleName.getText().toString());
+        values.put("cattle_policy",Integer.parseInt(policy));
+        values.put("no_of_child",Integer.parseInt(noOfChild));
         values.put("mother_id",Integer.parseInt(motherId));
         values.put("father_id",Integer.parseInt(fatherId));
+        values.put("age",Integer.parseInt(txtAge.getText().toString()));
+        values.put("weight",Double.parseDouble(txtWeight.getText().toString()));
         values.put("breed",spnBreed.getSelectedItem().toString());
         values.put("status",spnStatus.getSelectedItem().toString());
 
         String imageFileName = getImageOutputFile(txtUcin.getText().toString());
         values.put("cattle_image",imageFileName);
-
+        CHMSDatabase dbHelper = new CHMSDatabase(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        long count = db.insert("cattle_profile",null,values);
+        if(count > 0){
+            Toast.makeText(this, "Cattle Details Added Successfull", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Failed to Add Cattle Details", Toast.LENGTH_SHORT).show();
+        }
+        db.close();
 
         FileOutputStream out = null;
         try {
