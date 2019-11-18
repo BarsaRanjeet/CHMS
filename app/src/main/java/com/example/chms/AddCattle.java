@@ -3,22 +3,30 @@ package com.example.chms;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.BitSet;
 
 public class AddCattle extends AppCompatActivity {
     private Button btnCaptureImage;
 
-    private Bitmap capturedimage;
+    private EditText txtUcin,txtcattleName,txtPolicy,txtAge,txtWeight,txtNoOfChild,txtFatherId,txtMotherId;
+    private Spinner spnBreed,spnStatus;
+    private Bitmap bmpCapturedImage;
     String[] breed = {"Select breed",
             "Gir",
             "Surti",
@@ -38,6 +46,17 @@ public class AddCattle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_cattle);
 
+        txtUcin = findViewById(R.id.ucin);
+        txtcattleName = findViewById(R.id.cattle_name);
+        txtPolicy = findViewById(R.id.policy);
+        txtAge = findViewById(R.id.age);
+        txtWeight = findViewById(R.id.weight);
+        txtNoOfChild = findViewById(R.id.no_of_child);
+        txtFatherId = findViewById(R.id.father);
+        txtMotherId = findViewById(R.id.mother);
+        spnStatus = findViewById(R.id.status);
+        spnBreed = findViewById(R.id.breed);
+
 
         btnCaptureImage = findViewById(R.id.capture_image);
 
@@ -53,21 +72,70 @@ public class AddCattle extends AppCompatActivity {
     }
     public void addCattle(View v)
     {
-        Intent i = new Intent(this,CattleList.class);
-        startActivity(i);
+        ContentValues values = new ContentValues();
+        values.put("cuin",Integer.parseInt(txtUcin.getText().toString()));
+        values.put("cattle_name",txtcattleName.getText().toString());
+        values.put("cattle_policy",txtPolicy.getText().toString());
+        values.put("age",Integer.parseInt(txtAge.getText().toString()));
+        values.put("weight",Double.parseDouble(txtWeight.getText().toString()));
+        values.put("no_of_child",Integer.parseInt(txtNoOfChild.getText().toString()));
+        String motherId = txtMotherId.getText().toString();
+        String fatherId = txtFatherId.getText().toString();
+
+
+        if(motherId.isEmpty())
+            motherId = "0";
+        if(fatherId.isEmpty())
+            fatherId = "0";
+
+
+        values.put("mother_id",Integer.parseInt(motherId));
+        values.put("father_id",Integer.parseInt(fatherId));
+        values.put("breed",spnBreed.getSelectedItem().toString());
+        values.put("status",spnStatus.getSelectedItem().toString());
+
+        String imageFileName = getImageOutputFile(txtUcin.getText().toString());
+        values.put("cattle_image",imageFileName);
+
+
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(imageFileName);
+            bmpCapturedImage.compress(Bitmap.CompressFormat.JPEG,100,out);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+        }
+
+    }
+
+    private String getImageOutputFile(String ucin) {
+        String rootDuirectory = Environment.getExternalStorageDirectory().getAbsolutePath();
+        File imageFilePath = new File(rootDuirectory+"/chms");
+        if (!imageFilePath.exists())
+        {
+            imageFilePath.mkdirs();
+        }
+        File imageFile = new File(imageFilePath,"Img-"+ucin+".jpg");
+        return imageFile.getAbsolutePath();
     }
 
     public void capturePhoto(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent,0);
+        startActivityForResult(intent,1001);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        capturedimage = (Bitmap) data.getExtras().get("data");
-
-        Toast.makeText(this, "Image Captured", Toast.LENGTH_SHORT).show();
+        if(requestCode == 1001 && resultCode == RESULT_OK)
+        {
+            bmpCapturedImage = (Bitmap) data.getExtras().get("data");
+            Toast.makeText(this, "Image Captured", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "Failed captureImage", Toast.LENGTH_SHORT).show();
+        }
     }
 }

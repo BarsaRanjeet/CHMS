@@ -36,7 +36,7 @@
         android:background="@drawable/border"
         android:hint=" Enter UCIN "/>
     <EditText
-        android:id="@+id/cattleName"
+        android:id="@+id/cattle_name"
         android:layout_width="250dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/border"
@@ -54,7 +54,7 @@
         android:background="@drawable/border"
         android:inputType="text"
         android:layout_gravity="center"
-        android:hint=" Cattle policy "/>
+        android:hint=" Cattle policy number"/>
     <EditText
         android:id="@+id/age"
         android:layout_width="250dp"
@@ -74,7 +74,7 @@
         android:inputType="numberDecimal"
         android:hint=" Weight (in kg) "/>
     <EditText
-        android:id="@+id/noOfChild"
+        android:id="@+id/no_of_child"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"

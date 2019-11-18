@@ -39,6 +39,7 @@ public class CattleListAdapter extends ArrayAdapter
         TextView cattleName = view.findViewById(R.id.cattleName);
         TextView cattleState = view.findViewById(R.id.cattleState);
 
+
         cattleImage.setImageResource(cattleImages[position]);
         cattleName.setText(cattleNames[position]);
         cattleState.setText(cattleStates[position]);
