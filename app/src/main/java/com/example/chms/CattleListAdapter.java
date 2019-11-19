@@ -10,9 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import java.io.File;
 
 public class CattleListAdapter extends ArrayAdapter
 {
@@ -43,7 +46,12 @@ public class CattleListAdapter extends ArrayAdapter
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 8;
-        final Bitmap bitmap = BitmapFactory.decodeFile(cattleImages[position], options);
+        File file = new File(cattleImages[position]);
+        if(file.exists())
+            Toast.makeText(context, "Exist", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(context, "Not Exist", Toast.LENGTH_SHORT).show();
+        final Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
 
         cattleImage.setImageBitmap(bitmap);
         //cattleImage.setImageResource(cattleImages[position]);
