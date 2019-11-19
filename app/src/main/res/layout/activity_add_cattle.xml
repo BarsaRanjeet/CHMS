@@ -44,7 +44,17 @@
         android:layout_gravity="center"
         android:inputType="text"
         android:hint=" Enter cattle name "/>
-
+    <EditText
+        android:id="@+id/last_heat_date"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:editable="false"
+        android:focusable="false"
+        android:background="@drawable/border"
+        android:hint=" Last Heat date"/>
 
     <EditText
         android:id="@+id/policy"

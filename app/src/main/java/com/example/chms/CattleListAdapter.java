@@ -2,6 +2,8 @@ package com.example.chms;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +41,11 @@ public class CattleListAdapter extends ArrayAdapter
         TextView cattleName = view.findViewById(R.id.cattleName);
         TextView cattleState = view.findViewById(R.id.cattleState);
 
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 8;
+        final Bitmap bitmap = BitmapFactory.decodeFile(cattleImages[position], options);
 
+        cattleImage.setImageBitmap(bitmap);
         //cattleImage.setImageResource(cattleImages[position]);
         cattleName.setText(cattleNames[position]);
         cattleState.setText(cattleStates[position]);

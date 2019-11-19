@@ -3,6 +3,7 @@ package com.example.chms;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +14,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,14 +22,19 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.BitSet;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class AddCattle extends AppCompatActivity {
     private Button btnCaptureImage;
 
-    private EditText txtUcin,txtcattleName,txtPolicy,txtAge,txtWeight,txtNoOfChild,txtFatherId,txtMotherId;
+    final Calendar myCalendar = Calendar.getInstance();
+    private EditText txtUcin,txtcattleName,txtPolicy,txtAge,txtWeight,txtNoOfChild,txtFatherId,txtMotherId,txtLastHeatDate;
     private Spinner spnBreed,spnStatus;
     private Bitmap bmpCapturedImage;
+
     String[] breed = {"Select breed",
             "Gir",
             "Surti",
@@ -47,6 +54,27 @@ public class AddCattle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_cattle);
 
+
+        EditText datePicker= (EditText) findViewById(R.id.last_heat_date);
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateDate();
+            }
+        };
+
+        datePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(AddCattle.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
         txtUcin = findViewById(R.id.ucin);
         txtcattleName = findViewById(R.id.cattle_name);
         txtPolicy = findViewById(R.id.policy);
@@ -55,6 +83,7 @@ public class AddCattle extends AppCompatActivity {
         txtNoOfChild = findViewById(R.id.no_of_child);
         txtFatherId = findViewById(R.id.father);
         txtMotherId = findViewById(R.id.mother);
+        txtLastHeatDate = findViewById(R.id.last_heat_date);
         spnStatus = findViewById(R.id.status);
         spnBreed = findViewById(R.id.breed);
 
@@ -70,6 +99,13 @@ public class AddCattle extends AppCompatActivity {
         Spinner statusSpinner = (Spinner)findViewById(R.id.status);
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         statusSpinner.setAdapter(statusAdapter);
+    }
+    private void updateDate()
+    {
+        EditText edittext= (EditText) findViewById(R.id.last_heat_date);
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ENGLISH);
+        edittext.setText(sdf.format(myCalendar.getTime()));
     }
     public void addCattle(View v)
     {
@@ -98,7 +134,7 @@ public class AddCattle extends AppCompatActivity {
         values.put("weight",Double.parseDouble(txtWeight.getText().toString()));
         values.put("breed",spnBreed.getSelectedItem().toString());
         values.put("status",spnStatus.getSelectedItem().toString());
-
+        values.put("last_heat_on",txtLastHeatDate.getText().toString());
         String imageFileName = getImageOutputFile(txtUcin.getText().toString());
         values.put("cattle_image",imageFileName);
         CHMSDatabase dbHelper = new CHMSDatabase(this);
