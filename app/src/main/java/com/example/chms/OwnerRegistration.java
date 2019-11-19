@@ -1,8 +1,10 @@
 package com.example.chms;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,14 +40,16 @@ public class OwnerRegistration extends AppCompatActivity {
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
         }
+
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60,
                 20, mLocationListener);
 
     }
+
     public void getStartedBtn(View v)
     {
         CHMSDatabase dbHelper = new CHMSDatabase(this);
