@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -44,6 +45,7 @@ public class CattleList extends AppCompatActivity {
         cattleIds = new String[cursorCattles.getCount()];
         cattleNextHeatDates = new String[cursorCattles.getCount()];
         cattleLastHeatDates = new String[cursorCattles.getCount()];
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         if(cursorCattles.getCount() > 0)
         {
             cursorCattles.moveToFirst();
@@ -53,7 +55,6 @@ public class CattleList extends AppCompatActivity {
                 Toast.makeText(this, ""+cattleImages[i], Toast.LENGTH_SHORT).show();
                 cattleIds[i] = "Cattle id: "+cursorCattles.getString(cursorCattles.getColumnIndex("cuin"));
                 //cattleNextHeatDates[i] = "Next heat on: "+cursorCattles.getString(cursorCattles.getColumnIndex("last_heat_on"));
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 String lastHeatOn = cursorCattles.getString(cursorCattles.getColumnIndex("last_heat_on"));
                 try {
                     Calendar c = Calendar.getInstance();
@@ -62,7 +63,7 @@ public class CattleList extends AppCompatActivity {
                     c.add(Calendar.DATE, 21);
                     Date nextHeatDate = c.getTime();
                     String nextHeatOn = simpleDateFormat.format(nextHeatDate);
-                    cattleNextHeatDates[i] = "Next heat on: "+nextHeatOn;
+                    cattleNextHeatDates[i] = nextHeatOn;
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -71,6 +72,50 @@ public class CattleList extends AppCompatActivity {
 
                 cursorCattles.moveToNext();
             }
+
+            for(int i=0;i<cattleIds.length;i++)
+            {
+                String currentNextHeat = cattleNextHeatDates[i];
+                Date currentNextHeatDate = null;
+
+                long currentMills = 0;
+                try {
+                    currentNextHeatDate = simpleDateFormat.parse(currentNextHeat);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                currentMills = currentNextHeatDate.getTime();
+                for(int j=i;j<cattleIds.length;j++)
+                {
+                    String checkNextHeat = cattleNextHeatDates[j];
+                    Date checkNextHeatDate = null;
+                    try {
+                        checkNextHeatDate = simpleDateFormat.parse(checkNextHeat);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    long checkMills = checkNextHeatDate.getTime();
+                    if(checkMills < currentMills)
+                    {
+                        String tmpCattleId = cattleIds[i];
+                        cattleIds[i] = cattleIds[j];
+                        cattleIds[j] = tmpCattleId;
+
+                        String tmpNextHeatDate = cattleNextHeatDates[i];
+                        cattleNextHeatDates[i] = cattleNextHeatDates[j];
+                        cattleNextHeatDates[j] = tmpNextHeatDate;
+
+                        String tmpCattleImage = cattleImages[i];
+                        cattleImages[i] = cattleImages[j];
+                        cattleImages[j] = tmpCattleImage;
+                    }
+                }
+                for(i=0;i<cattleNextHeatDates.length;i++)
+                {
+                    cattleNextHeatDates[i] = "Next heat on: "+ cattleNextHeatDates[i];
+                }
+            }
+
 
             CattleListAdapter adapter = new CattleListAdapter(this,cattleImages,cattleIds,cattleNextHeatDates);
             ListView listView = (ListView)findViewById(R.id.cattleList);
