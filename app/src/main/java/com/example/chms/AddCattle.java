@@ -136,7 +136,7 @@ public class AddCattle extends AppCompatActivity {
         values.put("status",spnStatus.getSelectedItem().toString());
         values.put("last_heat_on",txtLastHeatDate.getText().toString());
         String imageFileName = getImageOutputFile(txtUcin.getText().toString());
-        values.put("cattle_image",imageFileName);
+        values.put("cattle_image","Img-"+txtUcin.getText().toString()+".jpg");
         CHMSDatabase dbHelper = new CHMSDatabase(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         long count = db.insert("cattle_profile",null,values);

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import java.io.File;
 
 public class CattleListAdapter extends ArrayAdapter
 {
@@ -43,7 +46,9 @@ public class CattleListAdapter extends ArrayAdapter
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 8;
-        final Bitmap bitmap = BitmapFactory.decodeFile(cattleImages[position], options);
+        String rootDuirectory = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+        final Bitmap bitmap = BitmapFactory.decodeFile(rootDuirectory+"/chms/"+cattleImages[position], options);
 
         cattleImage.setImageBitmap(bitmap);
         //cattleImage.setImageResource(cattleImages[position]);
