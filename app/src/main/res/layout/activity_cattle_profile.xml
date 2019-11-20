@@ -1,95 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CattleProfile">
-    <ScrollView
+
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:id="@+id/appbar_layout"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            app:contentScrim="@color/colorPrimaryDark"
+            android:id="@+id/cattle_profile_title"
+            app:expandedTitleTextAppearance="@color/colorPrimary"
+            app:title="cattle id">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:scaleType="centerCrop"
+                android:id="@+id/cattle_image"
+                android:src="@drawable/cow5"/>
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/cow5"/>
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Cattle id : 1234"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Cattle name : Bhuri "
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Policy : Not available"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Age : 6 year"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Weight : 720 kg"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="No of child : 2"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Mother id : 5890"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Father id : 6880"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Breed : Rathi"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Insemination"
-            android:onClick="insemination"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Milk production"
-            android:onClick="milkProduction"/>
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cattle_cuin"
+                android:text="cattle id"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cattle_name"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cattle_policy"/>
         </LinearLayout>
-    </ScrollView>
 
-</LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
