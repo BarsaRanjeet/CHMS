@@ -44,23 +44,106 @@
         >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cattle_cuin"
+                android:layout_marginLeft="50dp"
                 android:text="cattle id"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cattle_name"/>
+                android:text="cattle name"
+                android:id="@+id/cattle_name"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cattle_policy"/>
+                android:id="@+id/cattle_policy"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:text="cattle policy"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cattle_age"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:text="cattle age"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cattle_weight"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:text="cattle weight"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cattle_child"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:text="cattle child"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mother_id"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:text="cattle mother id"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/father_id"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:text="cattle father id"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cattle_breed"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:text="cattle breed"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cattle_status"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:text="cattle status"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cattle_next_heat"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp"
+                android:text="cattle next heat on"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="insemination"
+                    android:text="Insemination"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="milkProduction"
+                    android:text="milk production"/>
+            </LinearLayout>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
