@@ -19,7 +19,7 @@ public class CHMSDatabase extends SQLiteOpenHelper
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS owner_profile");
-        db.execSQL("DROP TABLE IF EXISTS cow_profile");
+        db.execSQL("DROP TABLE IF EXISTS cattle_profile");
         onCreate(db);
     }
 }

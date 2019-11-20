@@ -118,13 +118,17 @@ public class CattleList extends AppCompatActivity {
 
 
             CattleListAdapter adapter = new CattleListAdapter(this,cattleImages,cattleIds,cattleNextHeatDates);
-            ListView listView = (ListView)findViewById(R.id.cattleList);
+            final ListView listView = (ListView)findViewById(R.id.cattleList);
             listView.setAdapter(adapter);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    String item = (String)listView.getItemAtPosition(position);
+                    item = item.substring(11);
                     Intent i = new Intent(getApplicationContext(),CattleProfile.class);
+                    i.putExtra("cattleId",item);
                     startActivity(i);
                 }
             });
