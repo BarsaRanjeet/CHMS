@@ -13,7 +13,6 @@
         <item>Normal</item>
         <item>Pregnant</item>
         <item>Calving</item>
-        <item>Calving</item>
         <item>Weaning-of-calf</item>
     </string-array>
     <string-array name="cattle_gender">
@@ -42,6 +41,12 @@
         <item>21</item>
         <item>21</item>
     </string-array>
+    <string-array name="cow_breed_pregnancy_last">
+        <item>283</item>
+        <item>283</item>
+        <item>283</item>
+
+    </string-array>
 
 
     <string-array name="buffalo_breed">
@@ -61,5 +66,10 @@
         <item>21</item>
         <item>21</item>
         <item>21</item>
+    </string-array>
+    <string-array name="bufallo_breed_pregnancy_last">
+        <item>283</item>
+        <item>283</item>
+        <item>283</item>
     </string-array>
 </resources>

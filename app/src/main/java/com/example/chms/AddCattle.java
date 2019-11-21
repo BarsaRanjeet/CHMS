@@ -213,12 +213,22 @@ public class AddCattle extends AppCompatActivity {
         long count = db.insert("cattle_profile",null,values);
         if(count > 0){
             Toast.makeText(this, "Cattle Details Added Successfull", Toast.LENGTH_SHORT).show();
-            if(spnCattletype.equals("Buffalo Bull") || spnCattletype.equals("Bull")){
+            if(spnCattletype.equals("Buffalo Bull") || spnCattletype.equals("Bull")  || spnBreedingStatus.equals("Immature")){
                 Intent intent = new Intent(this,CattleList.class);
                 startActivity(intent);
             }else {
+
                 Intent intent = new Intent(this,CreateHeatProfile.class);
-                intent.putExtra("ucin",txtUcin.getText().toString());
+                Cattle cattle = new Cattle();
+
+                cattle.setUcin(Integer.parseInt(txtUcin.getText().toString()));
+                cattle.setAge(Integer.parseInt(txtAge.getText().toString()));
+                cattle.setBreed(spnBreed.getSelectedItem().toString());
+                cattle.setCattleType(spnCattletype.getSelectedItem().toString());
+                cattle.setStatus(spnStatus.getSelectedItem().toString());
+                cattle.setBreedingStatus(spnBreedingStatus.getSelectedItem().toString());
+
+                intent.putExtra("cattle",cattle);
                 startActivity(intent);
             }
         }else{
