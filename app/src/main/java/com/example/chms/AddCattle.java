@@ -164,8 +164,7 @@ public class AddCattle extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         int c_year = calendar.get(Calendar.YEAR);
         int c_day = calendar.get(Calendar.DATE);
-        Date d = new Date();
-        int c_month = d.getMonth();
+        int c_month = calendar.get(Calendar.DATE) + 1;
         int age_year;
         age_year = (c_year - year)-1;
         if(c_month >= month)
@@ -179,7 +178,6 @@ public class AddCattle extends AppCompatActivity {
 
     public void addCattle(View v)
     {
-
         String motherId = txtMotherId.getText().toString();
         String fatherId = txtFatherId.getText().toString();
         String policy = txtPolicy.getText().toString();
