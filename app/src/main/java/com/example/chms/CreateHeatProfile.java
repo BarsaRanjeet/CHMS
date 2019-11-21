@@ -140,7 +140,7 @@ public class CreateHeatProfile extends AppCompatActivity {
         }
         else if(cattle.getCattleType().equals("Buffalo"))
         {
-            breeds = Arrays.asList(getResources().getStringArray(R.array.cow_breed));
+            breeds = Arrays.asList(getResources().getStringArray(R.array.buffalo_breed));
         }
 
         int pos  = breeds.indexOf(cattle.getBreed());
