@@ -19,15 +19,15 @@
             android:id="@+id/last_heat_date"
             android:hint=" Last Heat date"/>
         <Button
-        android:id="@+id/addCattleBtn"
-        android:layout_width="250dp"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content"
-        android:text="Add cattle"
-        android:background="@color/colorPrimary"
-        android:textColor="#ffff"
-        android:layout_gravity="center"
-        android:layout_marginBottom="30dp"
-        android:onClick="createHeatProfile"/>
+            android:id="@+id/addCattleBtn"
+            android:layout_width="250dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:text="Add cattle"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffff"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:onClick="createHeatProfile"/>
 
 </LinearLayout>

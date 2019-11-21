@@ -35,8 +35,8 @@ public class AddCattle extends AppCompatActivity {
     private Button btnCaptureImage;
 
     final Calendar myCalendar = Calendar.getInstance();
-    private EditText txtUcin,txtcattleName,txtPolicy,txtAge,txtWeight,txtNoOfChild,txtFatherId,txtMotherId;
-    private Spinner spnBreed,spnStatus,spnCattletype,spnGender;
+    private EditText txtUcin,txtcattleName,txtPolicy,txtAge,txtWeight,txtNoOfChild,txtFatherId,txtMotherId,txtBirthDate;
+    private Spinner spnBreed,spnStatus,spnCattletype;
     private Bitmap bmpCapturedImage;
 
     String[] status = {"Select status",
@@ -53,7 +53,34 @@ public class AddCattle extends AppCompatActivity {
         setContentView(R.layout.activity_add_cattle);
 
 
+        EditText datePicker= (EditText) findViewById(R.id.birth_date);
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateDate();
+            }
+        };
 
+        datePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(AddCattle.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        datePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(AddCattle.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
         txtUcin = findViewById(R.id.ucin);
         txtcattleName = findViewById(R.id.cattle_name);
@@ -63,10 +90,11 @@ public class AddCattle extends AppCompatActivity {
         txtNoOfChild = findViewById(R.id.no_of_child);
         txtFatherId = findViewById(R.id.father);
         txtMotherId = findViewById(R.id.mother);
+        txtBirthDate = findViewById(R.id.birth_date);
         //txtLastHeatDate = findViewById(R.id.last_heat_date);
         spnStatus = findViewById(R.id.status);
         spnBreed = findViewById(R.id.breed);
-        spnGender = findViewById(R.id.cattle_gender);
+        //spnGender = findViewById(R.id.cattle_gender);
 
 
         btnCaptureImage = findViewById(R.id.capture_image);
@@ -84,10 +112,10 @@ public class AddCattle extends AppCompatActivity {
                 String selectedType = spnCattletype.getSelectedItem().toString();
 
                 String breedList[] = null;
-                if(selectedType.equals("Cow")){
+                if(selectedType.equals("Cow") || selectedType.equals("Bull")){
                     breedList = getResources().getStringArray(R.array.cow_breed);
-                } else if (selectedType.equals("G")) {
-                    breedList = getResources().getStringArray(R.array.goat_breed);
+                } else if (selectedType.equals("Buffalo") || selectedType.equals("Buffalo Bull")) {
+                    breedList = getResources().getStringArray(R.array.buffalo_breed);
                 }
                 String[] breeds = null;
                 if(breedList != null){
@@ -121,6 +149,14 @@ public class AddCattle extends AppCompatActivity {
         statusSpinner.setAdapter(statusAdapter);
     }
 
+    private void updateDate()
+    {
+        EditText edittext= (EditText) findViewById(R.id.birth_date);
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ENGLISH);
+        edittext.setText(sdf.format(myCalendar.getTime()));
+    }
+
     public void addCattle(View v)
     {
 
@@ -147,7 +183,7 @@ public class AddCattle extends AppCompatActivity {
         values.put("age",Integer.parseInt(txtAge.getText().toString()));
         values.put("weight",Double.parseDouble(txtWeight.getText().toString()));
         values.put("cattle_type",spnCattletype.getSelectedItem().toString());
-        values.put("gender",spnGender.getSelectedItem().toString());
+        values.put("date_of_birth",txtBirthDate.getText().toString());
         values.put("breed",spnBreed.getSelectedItem().toString());
         values.put("status",spnStatus.getSelectedItem().toString());
         values.put("last_heat_on","");
@@ -158,7 +194,7 @@ public class AddCattle extends AppCompatActivity {
         long count = db.insert("cattle_profile",null,values);
         if(count > 0){
             Toast.makeText(this, "Cattle Details Added Successfull", Toast.LENGTH_SHORT).show();
-            if(spnGender.equals("Male")){
+            if(spnCattletype.equals("Buffalo Bull") || spnCattletype.equals("Bull")){
                 Intent intent = new Intent(this,CattleList.class);
                 startActivity(intent);
             }else {

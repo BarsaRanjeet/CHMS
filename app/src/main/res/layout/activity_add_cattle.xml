@@ -58,20 +58,7 @@
             android:entries="@array/cattle_types"
             />
     </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:background="@drawable/border">
-                <Spinner
-                    android:id="@+id/cattle_gender"
-                    android:layout_width="250dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:entries="@array/cattle_gender"
-                    />
-            </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,6 +84,17 @@
         android:layout_gravity="center"
         android:hint=" Cattle policy number"/>
     <EditText
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:editable="false"
+        android:focusable="false"
+        android:background="@drawable/border"
+        android:id="@+id/birth_date"
+        android:hint="Birth date"/>
+    <EditText
         android:id="@+id/age"
         android:layout_width="250dp"
         android:layout_height="40dp"
@@ -104,7 +102,7 @@
         android:background="@drawable/border"
         android:layout_gravity="center"
         android:inputType="number"
-        android:hint=" Age (in year) "/>
+        android:hint="Age (in year) "/>
     <EditText
         android:id="@+id/weight"
         android:layout_width="250dp"

@@ -8,7 +8,9 @@
     </string-array>
     <string-array name="cattle_types">
         <item>Cow</item>
-        <item>Goat</item>
+        <item>Bull</item>
+        <item>Buffalo</item>
+        <item>Buffalo Bull</item>
     </string-array>
 
     <string-array name="cow_breed">
@@ -28,13 +30,22 @@
     </string-array>
 
 
-    <string-array name="goat_breed">
-
+    <string-array name="buffalo_breed">
+        <item>Jaffrabadi</item>
+        <item>Mehsani</item>
+        <item>Surti</item>
+        <item>Banni</item>
     </string-array>
-    <string-array name="goat_breed_area">
-
+    <string-array name="buffalo_breed_area">
+        <item>Amreli district of Saurashtra</item>
+        <item>Around Mehsana, Banaskantha and Sabarkantha </item>
+        <item>Around Kheda, Vadodara, Anand and Bharuch districts </item>
+        <item>Kutchh District  </item>
     </string-array>
-    <string-array name="goat_breed_avg_heat_period">
-
+    <string-array name="buffalo_breed_avg_heat_period">
+        <item>21</item>
+        <item>21</item>
+        <item>21</item>
+        <item>21</item>
     </string-array>
 </resources>
