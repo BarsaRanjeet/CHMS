@@ -143,6 +143,12 @@
                     android:layout_height="wrap_content"
                     android:onClick="milkProduction"
                     android:text="milk production"/>
+                <Button
+                    android:id="@+id/heat_details_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="heatDetails"
+                    android:text="Heat Details"/>
             </LinearLayout>
         </LinearLayout>
 

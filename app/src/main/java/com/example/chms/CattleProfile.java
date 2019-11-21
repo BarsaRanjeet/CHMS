@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,8 @@ public class CattleProfile extends AppCompatActivity {
     TextView c_id,c_name,c_policy,age,weight,noOfChild,motherId,fatherId,breed,status,nextHeat;
     ImageView c_image;
     CollapsingToolbarLayout c_title;
+    private String cattle_id,c_status;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +66,18 @@ public class CattleProfile extends AppCompatActivity {
             breed.setText("Cattle breed : "+cursor.getString(cursor.getColumnIndex("breed")));
             status.setText("Cattle status : "+cursor.getString(cursor.getColumnIndex("status")));
             nextHeat.setText("Next heat on : "+cursor.getString(cursor.getColumnIndex("last_heat_on")));
-
+            c_status = cursor.getString(cursor.getColumnIndex("status"));
+            cattle_id = cursor.getString(cursor.getColumnIndex("cuin"));
              cursor.moveToNext();
+        }
+        Button heatDetailsBtn = (Button)findViewById(R.id.heat_details_btn);
+        if(c_status.equals("Immature"))
+        {
+            heatDetailsBtn.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            heatDetailsBtn.setVisibility(View.VISIBLE);
         }
     }
     public void insemination(View v)
@@ -75,6 +88,12 @@ public class CattleProfile extends AppCompatActivity {
     public void milkProduction(View v)
     {
         Intent i = new Intent(this,MilkProduction.class);
+        startActivity(i);
+    }
+    public void heatDetails(View v)
+    {
+        Intent i = new Intent(this,HeatDetails.class);
+        i.putExtra("cattleId",cattle_id);
         startActivity(i);
     }
 }
