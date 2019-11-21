@@ -148,7 +148,7 @@ public class CattleList extends AppCompatActivity {
                 {
                     nCattleNextHeatDates[i] = "Calf in Immature state";
                 }
-                cursorCattlesNullDate.moveToPosition(j);
+                cursorCattlesNullDate.moveToNext();
             }
             db.close();
             CattleListAdapter adapter = new CattleListAdapter(this,nCattleImages,nCattleIds,nCattleNextHeatDates);
