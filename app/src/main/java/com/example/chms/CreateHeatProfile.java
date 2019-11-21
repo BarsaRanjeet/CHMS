@@ -84,6 +84,8 @@ public class CreateHeatProfile extends AppCompatActivity {
         long count = db.insert("heat_table",null,values);
         if(count>0){
             Toast.makeText(this, "Heat profile Successfully Created", Toast.LENGTH_SHORT).show();
+            Intent intentCattleList = new Intent(this,CattleList.class);
+            startActivity(intentCattleList);
         }else{
             Toast.makeText(this, "Failed to create Heat profile", Toast.LENGTH_SHORT).show();
         }
