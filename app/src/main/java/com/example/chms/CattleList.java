@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -24,6 +25,7 @@ public class CattleList extends AppCompatActivity {
     public static String [] cattleIds = null;
     public static String [] cattleNextHeatDates = null;
     public static String[] cattleLastHeatDates = null;
+    private TextView txtTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,7 @@ public class CattleList extends AppCompatActivity {
             Intent intent = new Intent(this, OwnerRegistration.class);
             startActivity(intent);
         }
-
+        txtTitle = findViewById(R.id.txt_title);
         CHMSDatabase dbHelper = new CHMSDatabase(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
@@ -122,7 +124,7 @@ public class CattleList extends AppCompatActivity {
 
             Cursor cursorCattlesNullDate = db.rawQuery("SELECT * FROM cattle_profile WHERE last_heat_on = '' OR last_heat_on = null ",new String[]{});
             int cursorLength = cursorCattlesNullDate.getCount();
-
+            //Toast.makeText(this, ""+cursorLength, Toast.LENGTH_SHORT).show();
             String[] nCattleImages = new String[cursorLength+cattleIds.length];
             String[] nCattleIds = new String[cursorLength+cattleIds.length];
             String[] nCattleNextHeatDates = new String[cursorLength+cattleIds.length];
@@ -150,6 +152,8 @@ public class CattleList extends AppCompatActivity {
                 }
                 cursorCattlesNullDate.moveToNext();
             }
+            if(nCattleIds.length >= 1)
+                txtTitle.setText("Cattle List");
             db.close();
             CattleListAdapter adapter = new CattleListAdapter(this,nCattleImages,nCattleIds,nCattleNextHeatDates);
             final ListView listView = (ListView)findViewById(R.id.cattleList);
