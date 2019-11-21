@@ -14,7 +14,11 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class CreateHeatProfile extends AppCompatActivity {
@@ -69,19 +73,48 @@ public class CreateHeatProfile extends AppCompatActivity {
 
     public void createHeatProfile(View view) {
         Intent intent = getIntent();
-        String cuin = intent.getStringExtra("ucin");
+        Cattle cattle = (Cattle)intent.getSerializableExtra("cattle");
+        int cuin = cattle.getUcin();
+
         radioGroup = findViewById(R.id.insemination);
         txtLastHeatDate = findViewById(R.id.last_heat_date);
+
+        cattle.setLastHeatDate(new Date(txtLastHeatDate.getText().toString()));
+
         int checked = radioGroup.getCheckedRadioButtonId();
+
         String insemination = (checked == R.id.insemination_done) ? "Yes" : "No";
         ContentValues values = new ContentValues();
+
         values.put("cuin",cuin);
         values.put("last_heat_date",txtLastHeatDate.getText().toString());
+        values.put("actual_heat_date",txtLastHeatDate.getText().toString());
         values.put("insemination_status",insemination);
         values.put("predicted_next_heat_date","");
+
         CHMSDatabase dbHelper = new CHMSDatabase(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        long count = db.insert("heat_table",null,values);
+        db.insert("heat_table",null,values);
+
+
+        ContentValues updateValues = new ContentValues();
+        updateValues.put("last_heat_on",txtLastHeatDate.getText().toString());
+        db.update("cattle_profile",updateValues,"cuin=?",new String[]{String.valueOf(cuin)});
+
+
+
+        ContentValues predictedValue = new ContentValues();
+        predictedValue.put("cuin",cuin);
+        predictedValue.put("last_heat_date",txtLastHeatDate.getText().toString());
+
+        String predictedHeatDate = new SimpleDateFormat("dd/MM/yyyy").format(nextHeatCalculate(cattle));
+
+        predictedHeatDate = (predictedHeatDate == null)?"":predictedHeatDate;
+
+        predictedValue.put("predicted_next_heat_date",predictedHeatDate);
+        predictedValue.put("insemination_status","");
+        predictedValue.put("actual_heat_date","");
+        long count = db.insert("heat_table",null,predictedValue);
         if(count>0){
             Toast.makeText(this, "Heat profile Successfully Created", Toast.LENGTH_SHORT).show();
             Intent intentCattleList = new Intent(this,CattleList.class);
@@ -89,9 +122,42 @@ public class CreateHeatProfile extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Failed to create Heat profile", Toast.LENGTH_SHORT).show();
         }
-        ContentValues updateValues = new ContentValues();
-        updateValues.put("last_heat_on",txtLastHeatDate.getText().toString());
-        db.update("cattle_profile",updateValues,"cuin=?",new String[]{cuin});
         db.close();
+
     }
+
+    public Date nextHeatCalculate(Cattle cattle)
+    {
+        if(!cattle.getBreedingStatus().equals("Normal"))
+            return null;
+        Date lastHeatDate = cattle.getLastHeatDate();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(lastHeatDate);
+        List<String> breeds = null;
+        if(cattle.getCattleType().equals("Cow"))
+        {
+            breeds = Arrays.asList(getResources().getStringArray(R.array.cow_breed));
+        }
+        else if(cattle.getCattleType().equals("Buffalo"))
+        {
+            breeds = Arrays.asList(getResources().getStringArray(R.array.cow_breed));
+        }
+
+        int pos  = breeds.indexOf(cattle.getBreed());
+        int heatPeriod = 0;
+        if(cattle.getCattleType().equals("Cow"))
+        {
+            List<String> heatPeriods = Arrays.asList(getResources().getStringArray(R.array.cow_breed_avg_heat_period));
+            heatPeriod = Integer.parseInt(heatPeriods.get(pos));
+        }
+        else if(cattle.getCattleType().equals("Buffalo"))
+        {
+            List<String> heatPeriods = Arrays.asList(getResources().getStringArray(R.array.buffalo_breed_avg_heat_period));
+            heatPeriod = Integer.parseInt(heatPeriods.get(pos));
+        }
+        cal.add(Calendar.DATE,heatPeriod);
+       return cal.getTime();
+    }
+
+
 }
