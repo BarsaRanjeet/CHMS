@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,13 +24,20 @@ public class InseminationNewEntry extends AppCompatActivity {
 
     final Calendar myCalendar = Calendar.getInstance();
     final Calendar myCurrentTime = Calendar.getInstance();
+    String date,time,cattleId;
+    EditText note,cuin;
+    Spinner spin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insemination_new_entry);
 
+        Intent i = getIntent();
+        cattleId = i.getStringExtra("cattleId");
+        cuin = (EditText)findViewById(R.id.cattleId);
+        cuin.setText(cattleId);
         String[] type = {"Select insemination type","Naturally","Artificially"};
-        Spinner spin = (Spinner)findViewById(R.id.type);
+        spin = (Spinner)findViewById(R.id.type);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,type);
         spin.setAdapter(adapter);
 
@@ -62,7 +72,8 @@ public class InseminationNewEntry extends AppCompatActivity {
                         InseminationNewEntry.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        editTimePicker.setText(hourOfDay + " : "+ minute);
+                        editTimePicker.setText(hourOfDay + ":"+ minute);
+                        time = ""+(hourOfDay + ":"+ minute);
                     }
                 },hr,min,true);
                 timePickerDialog.setTitle("Select time");
@@ -76,10 +87,23 @@ public class InseminationNewEntry extends AppCompatActivity {
         String myFormat = "dd/MM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ENGLISH);
         edittext.setText(sdf.format(myCalendar.getTime()));
+        date = ""+sdf.format(myCalendar.getTime());
     }
     public void add(View v)
     {
+        note = (EditText)findViewById(R.id.note);
+        CHMSDatabase sqliteDatabase = new CHMSDatabase(this);
+        SQLiteDatabase db = sqliteDatabase.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("cuin",cattleId);
+        values.put("date",date);
+        values.put("time",time);
+        values.put("type",spin.getSelectedItem().toString());
+        values.put("note",note.getText().toString());
+        db.insert("insemination",null,values);
+        Toast.makeText(getApplicationContext(),"Successfully inserted insemination detail",Toast.LENGTH_SHORT).show();
         Intent i = new Intent(this,Insemination.class);
+        i.putExtra("cattleId",cattleId);
         startActivity(i);
     }
 }

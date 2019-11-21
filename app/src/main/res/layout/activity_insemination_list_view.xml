@@ -7,17 +7,25 @@
     android:orientation="horizontal"
     android:gravity="center"
     tools:context=".InseminationListView">
+    <EditText
+        android:id="@+id/id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foreground="#ffff"
+        android:background="#ffff"/>
 
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:orientation="vertical"
         android:layout_gravity="center">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

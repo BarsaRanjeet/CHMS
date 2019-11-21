@@ -20,7 +20,7 @@
             app:contentScrim="@color/colorPrimaryDark"
             android:id="@+id/cattle_profile_title"
             app:expandedTitleTextAppearance="@color/colorPrimary"
-            app:title="cattle id">
+            app:title="">
 
             <ImageView
                 android:layout_width="match_parent"

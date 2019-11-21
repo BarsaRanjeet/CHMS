@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".HeatDetailsView"></activity>
-        <activity android:name=".HeatDetails" />
+        <activity android:name=".HeatDetails" >
+
+        </activity>
         <activity android:name=".CreateHeatProfile" />
         <activity android:name=".MilkProductionView" />
         <activity

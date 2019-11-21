@@ -19,7 +19,6 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 public class CattleProfile extends AppCompatActivity {
     TextView c_id,c_name,c_policy,age,weight,noOfChild,motherId,fatherId,breed,status,nextHeat;
     ImageView c_image;
-    CollapsingToolbarLayout c_title;
     private String cattle_id,c_status;
 
     @Override
@@ -45,7 +44,6 @@ public class CattleProfile extends AppCompatActivity {
         breed = (TextView)findViewById(R.id.cattle_breed);
         status = (TextView)findViewById(R.id.cattle_status);
         nextHeat = (TextView)findViewById(R.id.cattle_next_heat);
-        c_title = (CollapsingToolbarLayout)findViewById(R.id.cattle_profile_title);
         c_image = (ImageView)findViewById(R.id.cattle_image);
         BitmapFactory.Options bitmapFactory = new BitmapFactory.Options();
         bitmapFactory.inSampleSize = 10;
@@ -54,7 +52,6 @@ public class CattleProfile extends AppCompatActivity {
         while(cursor.isAfterLast()==false) {
             bitmap = BitmapFactory.decodeFile(cursor.getString(cursor.getColumnIndex("cattle_image")));
             c_image.setImageBitmap(bitmap);
-            c_title.setTitle("Cattle id : "+cursor.getString(cursor.getColumnIndex("cuin")));
             c_id.setText("Cattle id : "+cursor.getString(cursor.getColumnIndex("cuin")));
             c_name.setText("Cattle name : "+cursor.getString(cursor.getColumnIndex("cattle_name")));
             c_policy.setText("Cattle policy : "+cursor.getString(cursor.getColumnIndex("cattle_policy")));
@@ -83,6 +80,7 @@ public class CattleProfile extends AppCompatActivity {
     public void insemination(View v)
     {
         Intent i = new Intent(this,Insemination.class);
+        i.putExtra("cattleId",cattle_id);
         startActivity(i);
     }
     public void milkProduction(View v)
