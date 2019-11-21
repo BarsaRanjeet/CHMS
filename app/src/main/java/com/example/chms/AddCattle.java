@@ -199,6 +199,7 @@ public class AddCattle extends AppCompatActivity {
                 startActivity(intent);
             }else {
                 Intent intent = new Intent(this,CreateHeatProfile.class);
+                intent.putExtra("ucin",txtUcin.getText().toString());
                 startActivity(intent);
             }
         }else{

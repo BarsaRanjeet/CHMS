@@ -18,7 +18,32 @@
             android:background="@drawable/border"
             android:id="@+id/last_heat_date"
             android:hint=" Last Heat date"/>
-        <Button
+
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/insemination"
+        android:layout_gravity="center"
+        >
+        <RadioButton
+            android:id="@+id/insemination_not_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insemination Not done"
+            android:textColor="#FFF"
+            >
+
+        </RadioButton>
+        <RadioButton
+            android:id="@+id/insemination_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insemination done"
+            android:textColor="#FFF">
+        </RadioButton>
+    </RadioGroup>
+    <Button
             android:id="@+id/addCattleBtn"
             android:layout_width="250dp"
             android:layout_marginTop="10dp"
