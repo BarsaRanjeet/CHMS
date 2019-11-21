@@ -8,17 +8,19 @@
     tools:context=".HeatDetailsView">
 
         <TextView
-            android:id="@+id/last_heat_date"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="dd/mm/yyyy"/>
-
-        <TextView
             android:id="@+id/probable_heat_date"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:textSize="18dp"
+            android:text="dd/mm/yyyy"/>
+
+        <TextView
+            android:id="@+id/actual_heat_date"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="18dp"
             android:text="dd/mm/yyyy"/>
 
         <TextView
@@ -26,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:textSize="18dp"
             android:text="no"/>
 
 </LinearLayout>

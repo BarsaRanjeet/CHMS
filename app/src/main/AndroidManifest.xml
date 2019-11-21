@@ -15,7 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".HeatDetailsView"></activity>
-        <activity android:name=".HeatDetails" />
+        <activity android:name=".HeatDetails" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".CreateHeatProfile" />
         <activity android:name=".MilkProductionView" />
         <activity
@@ -41,11 +47,7 @@
         <activity
             android:name=".CattleList"
             android:label="Cattle List">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

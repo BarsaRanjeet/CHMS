@@ -15,16 +15,16 @@ import java.util.List;
 
 public class HeatDetailsAdapter extends ArrayAdapter {
     private Activity context;
-    private String[] lastHeatDates;
     private String[] probableHeatDates;
+    private String[] actualHeatDates;
     private String[] inseminations;
 
-    TextView lastHeatDate,probableHeatDate,insemination;
-    public HeatDetailsAdapter(Activity context, String[] lastHeatDates, String[] probableHeatDates, String[] inseminations) {
-        super(context,R.layout.activity_heat_details_view,lastHeatDates);
+    TextView probableHeatDate,actualHeatDate,insemination;
+    public HeatDetailsAdapter(Activity context, String[] probableHeatDates, String[] actualHeatDates, String[] inseminations) {
+        super(context,R.layout.activity_heat_details_view,probableHeatDates);
         this.context = context;
-        this.lastHeatDates = lastHeatDates;
         this.probableHeatDates = probableHeatDates;
+        this.actualHeatDates = actualHeatDates;
         this.inseminations = inseminations;
     }
 
@@ -33,11 +33,11 @@ public class HeatDetailsAdapter extends ArrayAdapter {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View view = inflater.inflate(R.layout.activity_heat_details_view,null,true);
-        lastHeatDate = (TextView)view.findViewById(R.id.last_heat_date);
         probableHeatDate = (TextView)view.findViewById(R.id.probable_heat_date);
+        actualHeatDate = (TextView)view.findViewById(R.id.actual_heat_date);
         insemination = (TextView)view.findViewById(R.id.insemination_status);
-        lastHeatDate.setText(lastHeatDates[position]);
         probableHeatDate.setText(probableHeatDates[position]);
+        actualHeatDate.setText(actualHeatDates[position]);
         insemination.setText(inseminations[position]);
         return view;
     }
