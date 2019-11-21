@@ -36,7 +36,7 @@
             android:name=".AddCattle"
             android:label="Add Cattle" />
         <activity android:name=".OwnerRegistration"></activity>
-        <activity android:name=".CattleListView" />
+<!--        <activity android:name=".CattleListView" />-->
         <activity
             android:name=".CattleList"
             android:label="Cattle List">
@@ -46,7 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+<!--        <activity android:name=".MainActivity" />-->
     </application>
 
 </manifest>

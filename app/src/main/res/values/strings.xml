@@ -2,6 +2,20 @@
     <string name="app_name">Kamdhenu</string>
     <string name="action_settings">Settings</string>
 
+
+    <string-array name="cattle_status">
+        <item>Milking</item>
+        <item>Non-Milking</item>
+        <item>Not-Well</item>
+    </string-array>
+    <string-array name="breeding_status">
+        <item>Immature</item>
+        <item>Normal</item>
+        <item>Pregnant</item>
+        <item>Calving</item>
+        <item>Calving</item>
+        <item>Weaning-of-calf</item>
+    </string-array>
     <string-array name="cattle_gender">
         <item>Female</item>
         <item>Male</item>

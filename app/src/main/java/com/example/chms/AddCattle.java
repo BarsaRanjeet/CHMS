@@ -36,16 +36,10 @@ public class AddCattle extends AppCompatActivity {
 
     final Calendar myCalendar = Calendar.getInstance();
     private EditText txtUcin,txtcattleName,txtPolicy,txtAge,txtWeight,txtNoOfChild,txtFatherId,txtMotherId,txtBirthDate;
-    private Spinner spnBreed,spnStatus,spnCattletype;
+    private Spinner spnBreed,spnStatus,spnCattletype,spnBreedingStatus;
     private Bitmap bmpCapturedImage;
 
-    String[] status = {"Select status",
-            "Milking",
-            "Non-Milking",
-            "Pregnant",
-            "Non-well",
-            "Under observation"
-    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +95,7 @@ public class AddCattle extends AppCompatActivity {
         btnCaptureImage = findViewById(R.id.capture_image);
         spnCattletype  = (Spinner)findViewById(R.id.cattle_type);
         spnBreed = findViewById(R.id.breed);
+        spnBreedingStatus = findViewById(R.id.breeding_status);
 
         String [] cattleTypes = getResources().getStringArray(R.array.cattle_types);
         ArrayAdapter<String> spnCattletypeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,cattleTypes);
@@ -143,10 +138,10 @@ public class AddCattle extends AppCompatActivity {
 
 
 
-        ArrayAdapter<String> statusAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,status);
-        Spinner statusSpinner = (Spinner)findViewById(R.id.status);
-        statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        statusSpinner.setAdapter(statusAdapter);
+      //  ArrayAdapter<String> statusAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,status);
+        //Spinner statusSpinner = (Spinner)findViewById(R.id.status);
+        //statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //statusSpinner.setAdapter(statusAdapter);
     }
 
     private void updateDate()
@@ -186,6 +181,7 @@ public class AddCattle extends AppCompatActivity {
         values.put("date_of_birth",txtBirthDate.getText().toString());
         values.put("breed",spnBreed.getSelectedItem().toString());
         values.put("status",spnStatus.getSelectedItem().toString());
+        values.put("breeding_status",spnBreedingStatus.getSelectedItem().toString());
         values.put("last_heat_on","");
         String imageFileName = getImageOutputFile(txtUcin.getText().toString());
         values.put("cattle_image",getImageOutputFile(txtUcin.getText().toString()));
@@ -199,6 +195,7 @@ public class AddCattle extends AppCompatActivity {
                 startActivity(intent);
             }else {
                 Intent intent = new Intent(this,CreateHeatProfile.class);
+                intent.putExtra("ucin",txtUcin.getText().toString());
                 startActivity(intent);
             }
         }else{
