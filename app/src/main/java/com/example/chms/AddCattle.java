@@ -3,11 +3,13 @@ package com.example.chms;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -23,11 +25,15 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -38,6 +44,7 @@ public class AddCattle extends AppCompatActivity {
     private EditText txtUcin,txtcattleName,txtPolicy,txtAge,txtWeight,txtNoOfChild,txtFatherId,txtMotherId,txtBirthDate;
     private Spinner spnBreed,spnStatus,spnCattletype,spnBreedingStatus;
     private Bitmap bmpCapturedImage;
+    private String c_year;
 
 
 
@@ -54,7 +61,7 @@ public class AddCattle extends AppCompatActivity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, month);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateDate();
+                        updateDate();
             }
         };
 
@@ -150,6 +157,24 @@ public class AddCattle extends AppCompatActivity {
         String myFormat = "dd/MM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ENGLISH);
         edittext.setText(sdf.format(myCalendar.getTime()));
+        String birth = sdf.format(myCalendar.getTime());
+        int day = Integer.parseInt(birth.substring(0,2));
+        int month = Integer.parseInt(birth.substring(3,5));
+        int year = Integer.parseInt(birth.substring(6));
+        Calendar calendar = Calendar.getInstance();
+        int c_year = calendar.get(Calendar.YEAR);
+        int c_day = calendar.get(Calendar.DATE);
+        Date d = new Date();
+        int c_month = d.getMonth();
+        int age_year;
+        age_year = (c_year - year)-1;
+        if(c_month >= month)
+        {
+            if(c_day>=day)
+                age_year += 1;
+        }
+        EditText age = (EditText)findViewById(R.id.age);
+        age.setText(""+age_year);
     }
 
     public void addCattle(View v)
