@@ -223,7 +223,7 @@ public class AddCattle extends AppCompatActivity {
 
                 cattle.setUcin(Integer.parseInt(txtUcin.getText().toString()));
                 cattle.setAge(Integer.parseInt(txtAge.getText().toString()));
-                cattle.setBreed(spnBreed.getSelectedItem().toString());
+                cattle.setBreed(spnBreed.getSelectedItem().toString().trim());
                 cattle.setCattleType(spnCattletype.getSelectedItem().toString());
                 cattle.setStatus(spnStatus.getSelectedItem().toString());
                 cattle.setBreedingStatus(spnBreedingStatus.getSelectedItem().toString());

@@ -40,7 +40,7 @@ public class CattleList extends AppCompatActivity {
         CHMSDatabase dbHelper = new CHMSDatabase(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        Cursor cursorCattles = db.rawQuery("SELECT * FROM cattle_profile",new String[]{});
+        Cursor cursorCattles = db.rawQuery("SELECT * FROM cattle_profile WHERE last_heat_on != '' OR last_heat_on != null ",new String[]{});
         cattleImages = new String[cursorCattles.getCount()];
         cattleIds = new String[cursorCattles.getCount()];
         cattleNextHeatDates = new String[cursorCattles.getCount()];
@@ -52,29 +52,34 @@ public class CattleList extends AppCompatActivity {
             for(int i=0;!cursorCattles.isAfterLast();i++)
             {
                 cattleImages[i] = cursorCattles.getString(cursorCattles.getColumnIndex("cattle_image"));
-                Toast.makeText(this, ""+cattleImages[i], Toast.LENGTH_SHORT).show();
                 cattleIds[i] = "Cattle id: "+cursorCattles.getString(cursorCattles.getColumnIndex("cuin"));
                 //cattleNextHeatDates[i] = "Next heat on: "+cursorCattles.getString(cursorCattles.getColumnIndex("last_heat_on"));
                 String lastHeatOn = cursorCattles.getString(cursorCattles.getColumnIndex("last_heat_on"));
-                try {
-                    Calendar c = Calendar.getInstance();
-                    Date date = simpleDateFormat.parse(lastHeatOn);
-                    c.setTime(date);
-                    c.add(Calendar.DATE, 21);
-                    Date nextHeatDate = c.getTime();
-                    String nextHeatOn = simpleDateFormat.format(nextHeatDate);
-                    cattleNextHeatDates[i] = nextHeatOn;
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                cattleNextHeatDates[i] = "";
+                if(lastHeatOn != null || !lastHeatOn.equals(""))
+                {
+                    try {
+                        Calendar c = Calendar.getInstance();
+                        Date date = simpleDateFormat.parse(lastHeatOn);
+                        c.setTime(date);
+                        c.add(Calendar.DATE, 21);
+                        Date nextHeatDate = c.getTime();
+                        String nextHeatOn = simpleDateFormat.format(nextHeatDate);
+                        cattleNextHeatDates[i] = nextHeatOn;
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    cattleLastHeatDates[i] = lastHeatOn;
+
+                    cursorCattles.moveToNext();
+
                 }
 
-                cattleLastHeatDates[i] = lastHeatOn;
-
-                cursorCattles.moveToNext();
             }
 
             for(int i=0;i<cattleIds.length;i++)
             {
+
                 String currentNextHeat = cattleNextHeatDates[i];
                 Date currentNextHeatDate = null;
 
@@ -110,14 +115,43 @@ public class CattleList extends AppCompatActivity {
                         cattleImages[j] = tmpCattleImage;
                     }
                 }
-                for(i=0;i<cattleNextHeatDates.length;i++)
-                {
-                    cattleNextHeatDates[i] = "Next heat on: "+ cattleNextHeatDates[i];
-                }
+
+
+
             }
 
+            Cursor cursorCattlesNullDate = db.rawQuery("SELECT * FROM cattle_profile WHERE last_heat_on = '' OR last_heat_on = null ",new String[]{});
+            int cursorLength = cursorCattlesNullDate.getCount();
 
-            CattleListAdapter adapter = new CattleListAdapter(this,cattleImages,cattleIds,cattleNextHeatDates);
+            String[] nCattleImages = new String[cursorLength+cattleIds.length];
+            String[] nCattleIds = new String[cursorLength+cattleIds.length];
+            String[] nCattleNextHeatDates = new String[cursorLength+cattleIds.length];
+            int i = 0;
+            for(i=0;i<cattleNextHeatDates.length;i++)
+            {
+                nCattleIds[i] = cattleIds[i];
+                nCattleImages[i] = cattleImages[i];
+                nCattleNextHeatDates[i] = "Next heat on: "+ cattleNextHeatDates[i];
+            }
+            cursorCattlesNullDate.moveToPosition(0);
+
+            for(int j=0;j<cursorLength;j++,i++)
+            {
+                nCattleIds[i] = "Cattle id: "+cursorCattlesNullDate.getString(cursorCattlesNullDate.getColumnIndex("cuin"));
+                nCattleImages[i] = cursorCattlesNullDate.getString(cursorCattlesNullDate.getColumnIndex("cattle_image"));
+                String cattleType = cursorCattlesNullDate.getString(cursorCattlesNullDate.getColumnIndex("cattle_type"));
+                if(cattleType.equals("Bull") || cattleType.equals("Buffalo Bull"))
+                {
+                    nCattleNextHeatDates[i] = cattleType;
+                }
+                else
+                {
+                    nCattleNextHeatDates[i] = "Calf in Immature state";
+                }
+                cursorCattlesNullDate.moveToPosition(j);
+            }
+            db.close();
+            CattleListAdapter adapter = new CattleListAdapter(this,nCattleImages,nCattleIds,nCattleNextHeatDates);
             final ListView listView = (ListView)findViewById(R.id.cattleList);
             listView.setAdapter(adapter);
 
