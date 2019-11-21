@@ -213,7 +213,7 @@ public class AddCattle extends AppCompatActivity {
         long count = db.insert("cattle_profile",null,values);
         if(count > 0){
             Toast.makeText(this, "Cattle Details Added Successfull", Toast.LENGTH_SHORT).show();
-            if(spnCattletype.equals("Buffalo Bull") || spnCattletype.equals("Bull")  || spnBreedingStatus.equals("Immature")){
+            if(spnCattletype.getSelectedItem().toString().equals("Buffalo Bull") || spnCattletype.getSelectedItem().toString().equals("Bull")  || spnBreedingStatus.getSelectedItem().toString().equals("Immature")){
                 Intent intent = new Intent(this,CattleList.class);
                 startActivity(intent);
             }else {
