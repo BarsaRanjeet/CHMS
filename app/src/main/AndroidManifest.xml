@@ -42,7 +42,7 @@
         <activity android:name=".OwnerRegistration" /> <!-- <activity android:name=".CattleListView" /> -->
         <activity
             android:name=".CattleList"
-            android:label="Cattle List">
+            android:label="Kamdhenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
