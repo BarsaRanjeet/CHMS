@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background2"
+    tools:context=".CreateHeatProfile">
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:editable="false"
+            android:focusable="false"
+            android:background="@drawable/border"
+            android:id="@+id/last_heat_date"
+            android:hint=" Last Heat date"/>
+        <Button
+        android:id="@+id/addCattleBtn"
+        android:layout_width="250dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:text="Add cattle"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffff"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:onClick="createHeatProfile"/>
+
+</LinearLayout>

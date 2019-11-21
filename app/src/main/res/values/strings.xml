@@ -1,4 +1,40 @@
 <resources>
     <string name="app_name">Kamdhenu</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="cattle_gender">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+    <string-array name="cattle_types">
+        <item>Cow</item>
+        <item>Goat</item>
+    </string-array>
+
+    <string-array name="cow_breed">
+        <item>Gir</item>
+        <item>Kankrej</item>
+        <item>Dangi </item>
+    </string-array>
+    <string-array name="cow_breed_area">
+        <item>Around forests of Gir</item>
+        <item>Kankrej taluka Rann of Kachchh</item>
+        <item>Dangs district</item>
+    </string-array>
+    <string-array name="cow_breed_avg_heat_period">
+        <item>21</item>
+        <item>21</item>
+        <item>21</item>
+    </string-array>
+
+
+    <string-array name="goat_breed">
+
+    </string-array>
+    <string-array name="goat_breed_area">
+
+    </string-array>
+    <string-array name="goat_breed_avg_heat_period">
+
+    </string-array>
 </resources>

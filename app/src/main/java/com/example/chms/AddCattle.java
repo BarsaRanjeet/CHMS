@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -23,24 +24,21 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class AddCattle extends AppCompatActivity {
     private Button btnCaptureImage;
 
     final Calendar myCalendar = Calendar.getInstance();
-    private EditText txtUcin,txtcattleName,txtPolicy,txtAge,txtWeight,txtNoOfChild,txtFatherId,txtMotherId,txtLastHeatDate;
-    private Spinner spnBreed,spnStatus;
+    private EditText txtUcin,txtcattleName,txtPolicy,txtAge,txtWeight,txtNoOfChild,txtFatherId,txtMotherId;
+    private Spinner spnBreed,spnStatus,spnCattletype,spnGender;
     private Bitmap bmpCapturedImage;
 
-    String[] breed = {"Select breed",
-            "Gir",
-            "Surti",
-            "Jaffrabadi",
-            "Mahesana"
-    };
     String[] status = {"Select status",
             "Milking",
             "Non-Milking",
@@ -55,25 +53,7 @@ public class AddCattle extends AppCompatActivity {
         setContentView(R.layout.activity_add_cattle);
 
 
-        EditText datePicker= (EditText) findViewById(R.id.last_heat_date);
-        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, month);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateDate();
-            }
-        };
 
-        datePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(AddCattle.this, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
 
         txtUcin = findViewById(R.id.ucin);
         txtcattleName = findViewById(R.id.cattle_name);
@@ -83,30 +63,64 @@ public class AddCattle extends AppCompatActivity {
         txtNoOfChild = findViewById(R.id.no_of_child);
         txtFatherId = findViewById(R.id.father);
         txtMotherId = findViewById(R.id.mother);
-        txtLastHeatDate = findViewById(R.id.last_heat_date);
+        //txtLastHeatDate = findViewById(R.id.last_heat_date);
         spnStatus = findViewById(R.id.status);
         spnBreed = findViewById(R.id.breed);
+        spnGender = findViewById(R.id.cattle_gender);
 
 
         btnCaptureImage = findViewById(R.id.capture_image);
+        btnCaptureImage = findViewById(R.id.capture_image);
+        spnCattletype  = (Spinner)findViewById(R.id.cattle_type);
+        spnBreed = findViewById(R.id.breed);
 
-        ArrayAdapter<String> breedAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,breed);
-        Spinner breedSpinner = (Spinner)findViewById(R.id.breed);
-        breedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        breedSpinner.setAdapter(breedAdapter);
+        String [] cattleTypes = getResources().getStringArray(R.array.cattle_types);
+        ArrayAdapter<String> spnCattletypeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,cattleTypes);
+       spnCattletypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnCattletype.setAdapter(spnCattletypeAdapter);
+        spnCattletype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedType = spnCattletype.getSelectedItem().toString();
+
+                String breedList[] = null;
+                if(selectedType.equals("Cow")){
+                    breedList = getResources().getStringArray(R.array.cow_breed);
+                } else if (selectedType.equals("G")) {
+                    breedList = getResources().getStringArray(R.array.goat_breed);
+                }
+                String[] breeds = null;
+                if(breedList != null){
+
+                    breeds = new String[breedList.length+1];
+                    breeds[0] = "Select Breed";
+                    for(int i=0;i< breedList.length;i++){
+                        breeds[i+1] = breedList[i];
+                    }
+                }else{
+                    breeds = new String[1];
+                    breeds[0] = "Select Breed";
+                }
+                ArrayAdapter<String> breedAdapter = new ArrayAdapter<String>(AddCattle.this,android.R.layout.simple_spinner_dropdown_item,breeds);
+                breedAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                spnBreed.setAdapter(breedAdapter);
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
 
         ArrayAdapter<String> statusAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,status);
         Spinner statusSpinner = (Spinner)findViewById(R.id.status);
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         statusSpinner.setAdapter(statusAdapter);
     }
-    private void updateDate()
-    {
-        EditText edittext= (EditText) findViewById(R.id.last_heat_date);
-        String myFormat = "dd/MM/yyyy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ENGLISH);
-        edittext.setText(sdf.format(myCalendar.getTime()));
-    }
+
     public void addCattle(View v)
     {
 
@@ -132,9 +146,11 @@ public class AddCattle extends AppCompatActivity {
         values.put("father_id",Integer.parseInt(fatherId));
         values.put("age",Integer.parseInt(txtAge.getText().toString()));
         values.put("weight",Double.parseDouble(txtWeight.getText().toString()));
+        values.put("cattle_type",spnCattletype.getSelectedItem().toString());
+        values.put("gender",spnGender.getSelectedItem().toString());
         values.put("breed",spnBreed.getSelectedItem().toString());
         values.put("status",spnStatus.getSelectedItem().toString());
-        values.put("last_heat_on",txtLastHeatDate.getText().toString());
+        values.put("last_heat_on","");
         String imageFileName = getImageOutputFile(txtUcin.getText().toString());
         values.put("cattle_image",getImageOutputFile(txtUcin.getText().toString()));
         CHMSDatabase dbHelper = new CHMSDatabase(this);
@@ -142,8 +158,13 @@ public class AddCattle extends AppCompatActivity {
         long count = db.insert("cattle_profile",null,values);
         if(count > 0){
             Toast.makeText(this, "Cattle Details Added Successfull", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this,CattleList.class);
-            startActivity(intent);
+            if(spnGender.equals("Male")){
+                Intent intent = new Intent(this,CattleList.class);
+                startActivity(intent);
+            }else {
+                Intent intent = new Intent(this,CreateHeatProfile.class);
+                startActivity(intent);
+            }
         }else{
             Toast.makeText(this, "Already Exist", Toast.LENGTH_SHORT).show();
         }

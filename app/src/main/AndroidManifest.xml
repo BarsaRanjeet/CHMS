@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo2"
@@ -13,9 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MilkProductionView"></activity>
-        <activity android:name=".MilkNewEntry" android:label="Milk new entry" />
-        <activity android:name=".MilkProduction" android:label="Milk production"/>
+        <activity android:name=".CreateHeatProfile"></activity>
+        <activity android:name=".MilkProductionView" />
+        <activity
+            android:name=".MilkNewEntry"
+            android:label="Milk new entry" />
+        <activity
+            android:name=".MilkProduction"
+            android:label="Milk production" />
         <activity
             android:name=".CattleProfile"
             android:label="Cattle Profile" />
@@ -29,19 +35,16 @@
         <activity
             android:name=".AddCattle"
             android:label="Add Cattle" />
-        <activity android:name=".OwnerRegistration">
-
-        </activity>
+        <activity android:name=".OwnerRegistration"></activity>
         <activity android:name=".CattleListView" />
         <activity
             android:name=".CattleList"
-            android:label="Cattle List" >
+            android:label="Cattle List">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".MainActivity" />
     </application>
