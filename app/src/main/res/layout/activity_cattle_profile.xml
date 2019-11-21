@@ -19,8 +19,7 @@
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:contentScrim="@color/colorPrimaryDark"
             android:id="@+id/cattle_profile_title"
-            app:expandedTitleTextAppearance="@color/colorPrimary"
-            app:title="cattle id">
+            app:expandedTitleTextAppearance="@color/colorPrimary">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -48,108 +47,164 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="20dp">
+            <Button
+                android:id="@+id/milk_production"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="milkProduction"
+                android:width="290dp"
+                android:layout_marginTop="20dp"
+                android:text="milk production"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                >
 
-            <TextView
-                android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/heat_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="heatDetails"
+                    android:text="Heat Details"/>
+                <Button
+                    android:id="@+id/insemination_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="insemination"
+                    android:text="Insemination Details"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/cattle_cuin"
-                android:layout_marginLeft="50dp"
-                android:text="cattle id"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cattle_cuin"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20dp"
+                    android:text="cattle id"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cattle_breed"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="50dp"
+                    android:textSize="20dp"
+                    android:text="cattle breed"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="cattle name"
-                android:id="@+id/cattle_name"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cattle_weight"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20dp"
+                    android:text="cattle weight"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cattle_age"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="55dp"
+                    android:textSize="20dp"
+                    android:text="cattle age"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cattle name"
+                    android:id="@+id/cattle_name"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cattle type"
+                    android:id="@+id/cattle_type"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="60dp"/>
+
+            </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/breeding_status"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20dp"
+                    android:text="Breeding status"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cattle_status"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20dp"
+                    android:text="Milking status"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cattle_policy"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
                 android:text="cattle policy"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/cattle_age"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp"
-                android:text="cattle age"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/cattle_weight"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp"
-                android:text="cattle weight"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cattle_child"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
                 android:text="cattle child"/>
-            <TextView
+            <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/mother_id"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
                 android:text="cattle mother id"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/father_id"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp"
-                android:text="cattle father id"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/cattle_breed"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp"
-                android:text="cattle breed"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/cattle_status"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp"
-                android:text="cattle status"/>
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="cattle father id"/>-->
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cattle_next_heat"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
                 android:text="cattle next heat on"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="20dp">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="insemination"
-                    android:text="Insemination"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="milkProduction"
-                    android:text="milk production"/>
-                <Button
-                    android:id="@+id/heat_details_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="heatDetails"
-                    android:text="Heat Details"/>
-            </LinearLayout>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
