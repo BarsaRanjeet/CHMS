@@ -131,8 +131,4 @@ public class HeatDetails extends AppCompatActivity{
         });
     }
 
-    @Override
-    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-
-    }
 }
