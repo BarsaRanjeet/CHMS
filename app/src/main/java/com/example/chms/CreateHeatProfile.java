@@ -112,6 +112,11 @@ public class CreateHeatProfile extends AppCompatActivity {
         predictedValue.put("cuin",cuin);
         predictedValue.put("last_heat_date",txtLastHeatDate.getText().toString());
 
+        try {
+            cattle.setLastHeatDate(new SimpleDateFormat("dd/MM/yyyy").parse(txtLastHeatDate.getText().toString()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         String predictedHeatDate = new SimpleDateFormat("dd/MM/yyyy").format(HeatPrediction.nextHeatCalculate(this,cattle));
 
         predictedHeatDate = (predictedHeatDate == null)?"":predictedHeatDate;

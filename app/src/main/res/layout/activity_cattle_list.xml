@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:text="You have not added any cattle"
         android:layout_marginTop="10dp"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_marginLeft="30dp"
         android:textStyle="bold"
         android:textSize="20dp"/>
