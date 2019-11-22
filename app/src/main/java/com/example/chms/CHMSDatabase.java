@@ -16,15 +16,15 @@ public class CHMSDatabase extends SQLiteOpenHelper
         db.execSQL("CREATE TABLE cattle_profile(cuin integer PRIMARY KEY,cattle_image varchar(30),cattle_name varchar(20),cattle_type varchar(20),date_of_birth varchar(12),cattle_policy varchar(20),age integer(3),weight double,no_of_child integer(3),mother_id integer,father_id integer,breed varchar(20),status varchar(20),breeding_status varchar(20),last_heat_on varchar(12))");
         db.execSQL("CREATE TABLE heat_table(h_id  integer PRIMARY KEY AUTOINCREMENT,cuin integer, last_heat_date varchar(12), predicted_next_heat_date varchar(12),insemination_status  varchar(10), actual_heat_date varchar(12))");
         db.execSQL("CREATE TABLE insemination(ins_id integer PRIMARY KEY AUTOINCREMENT,cuin integer,date varchar(12),time varchar(12),type varchar(12),note text)");
-        db.execSQL("CREATE TABLE milk_detail(milk_id integer PRIMARY KEY AUTOINCREMENT)");
+        db.execSQL("CREATE TABLE milk_detail(milk_id integer PRIMARY KEY AUTOINCREMENT,cuin integer,date varchar(12),time varchar(10),milk_qty double,note text)");
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS owner_profile");
         db.execSQL("DROP TABLE IF EXISTS cattle_profile");
         db.execSQL("DROP TABLE IF EXISTS heat_table");
         db.execSQL("DROP TABLE IF EXISTS insemination");
+        db.execSQL("DROP TABLE IF EXISTS milk_detail");
         onCreate(db);
     }
 }

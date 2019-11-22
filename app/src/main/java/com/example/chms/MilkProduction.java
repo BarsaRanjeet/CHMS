@@ -18,18 +18,31 @@ public class MilkProduction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_milk_production);
         Intent i = getIntent();
-        cattleId = i.getStringExtra("cattle_id");
+        cattleId = i.getStringExtra("cattleId");
 
         CHMSDatabase sqliteHelper = new CHMSDatabase(getApplicationContext());
         SQLiteDatabase db = sqliteHelper.getReadableDatabase();
+        Cursor cursor = db.query("milk_detail",new String[]{},null,null,null,null,"milk_id DESC");
+        if(cursor.getCount()>0) {
 
-        ListView listV = (ListView)findViewById(R.id.milkDetail);
-        MilkProductionAdapter adapter = new MilkProductionAdapter(this,dates,milkQuantities);
-        listV.setAdapter(adapter);
+            dates = new String[cursor.getCount()];
+            milkQuantities = new String[cursor.getCount()];
+            cursor.moveToFirst();
+            for (int j=0;cursor.isAfterLast()==false;j++)
+            {
+                dates[j] = cursor.getString(2);
+                milkQuantities[j] = cursor.getString(4);
+                cursor.moveToNext();
+            }
+            ListView listV = (ListView) findViewById(R.id.milkDetail);
+            MilkProductionAdapter adapter = new MilkProductionAdapter(this, dates, milkQuantities);
+            listV.setAdapter(adapter);
+        }
     }
     public void newEntry(View v)
     {
         Intent i = new Intent(this,MilkNewEntry.class);
+        i.putExtra("cattleId",cattleId);
         startActivity(i);
     }
 }
