@@ -3,6 +3,7 @@ package com.example.chms;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -26,19 +28,25 @@ public class HeatDetails extends AppCompatActivity{
     public static String[] probableHeatDates = null;
     public static String[] actualHeatDates = null;
     public static String[] inseminations = null;
-    private TextView txtCurrentProbableDate;
+    private TextView txtCurrentProbableDate,txtPendingHeatDate;
     private Button btnChange;
+    private LinearLayout pendingInsemination;
+    private String cattleId;
+    private String heatId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heat_details);
 
+        pendingInsemination = findViewById(R.id.pending_insemination_layout);
         txtCurrentProbableDate = findViewById(R.id.current_probable);
+        txtPendingHeatDate = findViewById(R.id.pending_heat_date);
         btnChange = findViewById(R.id.btn_heat_today);
 
         Intent intent = getIntent();
-        final String cattleId = intent.getStringExtra("cattleId");
-
+        cattleId = intent.getStringExtra("cattleId");
+       checkAnyPendingInsemination(cattleId);
         final CHMSDatabase dbHelper = new CHMSDatabase(this);
         final SQLiteDatabase db = dbHelper.getReadableDatabase();
 
@@ -95,7 +103,7 @@ public class HeatDetails extends AppCompatActivity{
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                 String actualHeatDate = format.format(new Date());
                 values.put("actual_heat_date",actualHeatDate);
-                values.put("insemination_status","No");
+                values.put("insemination_status","Pending");
 
                 long count = db.update("heat_table",values,"cuin=? AND predicted_next_heat_date = ?",new String[]{cattleId,txtCurrentProbableDate.getText().toString()});
 
@@ -131,4 +139,41 @@ public class HeatDetails extends AppCompatActivity{
         });
     }
 
+    public void checkAnyPendingInsemination(String cuin)
+    {
+        CHMSDatabase dbHelper = new CHMSDatabase(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query("heat_table",new String[]{},"cuin=? AND insemination_status = 'Pending'",new String[]{cuin},null,null,"h_id DESC");
+
+        if(cursor.getCount() > 0)
+        {
+            cursor.moveToFirst();
+            heatId = cursor.getString(cursor.getColumnIndex("h_id"));
+            txtPendingHeatDate.setText(cursor.getString(cursor.getColumnIndex("actual_heat_date")));
+            pendingInsemination.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            pendingInsemination.setVisibility(View.GONE);
+        }
+        db.close();
+    }
+
+    public void updateInsemination(View view) {
+        Intent intent = new Intent(this,InseminationNewEntry.class);
+        intent.putExtra("cattleId",cattleId);
+        intent.putExtra("h_id",heatId);
+        startActivity(intent);
+    }
+
+    public void noInsemination(View view) {
+        CHMSDatabase dbHelper = new CHMSDatabase(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues updateValues = new ContentValues();
+        updateValues.put("insemination_status","No");
+        long count = db.update("heat_table",updateValues,"h_id=?",new String[]{heatId});
+        if(count > 0)
+            pendingInsemination.setVisibility(View.GONE);
+
+    }
 }
