@@ -54,7 +54,7 @@ public class CattleList extends AppCompatActivity {
             for(int i=0;!cursorCattles.isAfterLast();i++)
             {
                 cattleImages[i] = cursorCattles.getString(cursorCattles.getColumnIndex("cattle_image"));
-                cattleIds[i] = "Cattle id: "+cursorCattles.getString(cursorCattles.getColumnIndex("cuin"));
+                cattleIds[i] = "UCIN No: "+cursorCattles.getString(cursorCattles.getColumnIndex("cuin"));
                 //cattleNextHeatDates[i] = "Next heat on: "+cursorCattles.getString(cursorCattles.getColumnIndex("last_heat_on"));
                 String lastHeatOn = cursorCattles.getString(cursorCattles.getColumnIndex("last_heat_on"));
                 cattleNextHeatDates[i] = "";
@@ -139,7 +139,7 @@ public class CattleList extends AppCompatActivity {
 
             for(int j=0;j<cursorLength;j++,i++)
             {
-                nCattleIds[i] = "Cattle id: "+cursorCattlesNullDate.getString(cursorCattlesNullDate.getColumnIndex("cuin"));
+                nCattleIds[i] = "UCIN No: "+cursorCattlesNullDate.getString(cursorCattlesNullDate.getColumnIndex("cuin"));
                 nCattleImages[i] = cursorCattlesNullDate.getString(cursorCattlesNullDate.getColumnIndex("cattle_image"));
                 String cattleType = cursorCattlesNullDate.getString(cursorCattlesNullDate.getColumnIndex("cattle_type"));
                 if(cattleType.equals("Bull") || cattleType.equals("Buffalo Bull"))
@@ -164,7 +164,7 @@ public class CattleList extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     String item = (String)listView.getItemAtPosition(position);
-                    item = item.substring(11);
+                    item = item.substring(9);
                     Intent i = new Intent(getApplicationContext(),CattleProfile.class);
                     i.putExtra("cattleId",item);
                     startActivity(i);

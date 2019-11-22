@@ -22,12 +22,15 @@ import java.util.Date;
 
 public class CattleProfile extends AppCompatActivity {
     TextView c_id,c_name,c_policy,age,weight,noOfChild,motherId,fatherId,breed,status,nextHeat,txtCattleType,txtBreedingStatus;
-    Button btnInseminationDetails,btnHeatDetails,btnMilkProduction;
 
     ImageView c_image;
     CollapsingToolbarLayout c_title;
     private String cattle_id,c_status;
 
+
+    private Button btnInseminationDetails,btnHeatDetails,btnMilkProduction;
+//    private TextView txtUcin,txtBreed,txtWeight,txtAge,txtName,txtType,txtBreedingStatus,txtMilkingStatus,txtPolicy,txtNoOfChild,txtNextHeatDate;
+//    private ImageView imgCattle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,17 @@ public class CattleProfile extends AppCompatActivity {
         btnInseminationDetails = findViewById(R.id.insemination_details);
         btnMilkProduction = findViewById(R.id.milk_production);
 
+/*        txtUcin = findViewById(R.id.cattle_cuin);
+        txtBreed = findViewById(R.id.cattle_breed);
+        txtWeight = findViewById(R.id.cattle_weight);
+        txtAge = findViewById(R.id.cattle_age);
+        txtName = findViewById(R.id.cattle_name);
+        txtType = findViewById(R.id.cattle_type);
+        txtBreedingStatus = findViewById(R.id.breeding_status);
+        txtMilkingStatus = findViewById(R.id.cattle_status);
+        txtPolicy = findViewById(R.id.cattle_policy);
+        txtNoOfChild = findViewById(R.id.cattle_child);
+        txtNextHeatDate = findViewById(R.id.cattle_next_heat);*/
 
 
         Intent i = getIntent();
@@ -46,14 +60,15 @@ public class CattleProfile extends AppCompatActivity {
         String[] columns = {};
         Cursor cursor = db.query("cattle_profile",columns,"cuin=?",new String[]{id},null,null,null);
 
+
         c_id = (TextView)findViewById(R.id.cattle_cuin);
         c_name = (TextView)findViewById(R.id.cattle_name);
         c_policy = (TextView)findViewById(R.id.cattle_policy);
         age = (TextView)findViewById(R.id.cattle_age);
         weight = (TextView)findViewById(R.id.cattle_weight);
         noOfChild = (TextView)findViewById(R.id.cattle_child);
-       /* motherId = (TextView)findViewById(R.id.mother_id);
-        fatherId = (TextView)findViewById(R.id.father_id);*/
+//        motherId = (TextView)findViewById(R.id.mother_id);
+//        fatherId = (TextView)findViewById(R.id.father_id);
         breed = (TextView)findViewById(R.id.cattle_breed);
         status = (TextView)findViewById(R.id.cattle_status);
         nextHeat = (TextView)findViewById(R.id.cattle_next_heat);
@@ -69,7 +84,7 @@ public class CattleProfile extends AppCompatActivity {
             bitmap = BitmapFactory.decodeFile(cursor.getString(cursor.getColumnIndex("cattle_image")));
             c_image.setImageBitmap(bitmap);
            // c_title.setTitle("Cattle id : "+cursor.getString(cursor.getColumnIndex("cuin")));
-            int ucin = cursor.getInt(cursor.getColumnIndex("cuin"));
+            int ucin = Integer.parseInt(cursor.getString(cursor.getColumnIndex("cuin")));
             c_id.setText("UCIN No : "+ucin);
             String cattleType = cursor.getString(cursor.getColumnIndex("cattle_type"));
             txtCattleType.setText("Cattle : "+cattleType);
@@ -97,10 +112,10 @@ public class CattleProfile extends AppCompatActivity {
             cattle.setBreedingStatus(breedingStatus);
             cattle.setStatus(milkingStatus);
             cattle.setAge(ageInt);
-            String lastHeatDate = cursor.getString(cursor.getColumnIndex("last_heat_on"));
             try {
-                cattle.setLastHeatDate(new SimpleDateFormat("dd/MM/yyyy").parse(lastHeatDate));
+                cattle.setLastHeatDate(new SimpleDateFormat("dd/MM/yyyy").parse(cursor.getString(cursor.getColumnIndex("last_heat_on"))));
             } catch (ParseException e) {
+                e.printStackTrace();
             }
 
 
@@ -115,32 +130,20 @@ public class CattleProfile extends AppCompatActivity {
                 noOfChild.setVisibility(View.GONE);
                 nextHeat.setVisibility(View.GONE);
                 status.setVisibility(View.GONE);
+                btnMilkProduction.setVisibility(View.GONE);
                 btnInseminationDetails.setVisibility(View.GONE);
                 btnMilkProduction.setVisibility(View.GONE);
-                btnHeatDetails.setVisibility(View.GONE);
             }else{
                 nextHeat.setText("Next heat on : "+new SimpleDateFormat("dd/MM/yyyy").format(HeatPrediction.nextHeatCalculate(this,cattle)));
             }
 
-
-
-
              cursor.moveToNext();
         }
-        Button heatDetailsBtn = (Button)findViewById(R.id.heat_details);
-        if(c_status.equals("Immature"))
-        {
-            heatDetailsBtn.setVisibility(View.INVISIBLE);
-        }
-        else
-        {
-            heatDetailsBtn.setVisibility(View.VISIBLE);
-        }
+
     }
     public void insemination(View v)
     {
         Intent i = new Intent(this,Insemination.class);
-        i.putExtra("cattleId",cattle_id);
         startActivity(i);
     }
     public void milkProduction(View v)
