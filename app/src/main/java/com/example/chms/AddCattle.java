@@ -113,6 +113,14 @@ public class AddCattle extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedType = spnCattletype.getSelectedItem().toString();
 
+                if(selectedType.equals("Buffalo Bull") || selectedType.equals("Bull"))
+                {
+                    spnBreedingStatus.setVisibility(View.GONE);
+                    spnStatus.setVisibility(View.GONE);
+                }else{
+                    spnBreedingStatus.setVisibility(View.VISIBLE);
+                    spnStatus.setVisibility(View.VISIBLE);
+                }
                 String breedList[] = null;
                 if(selectedType.equals("Cow") || selectedType.equals("Bull")){
                     breedList = getResources().getStringArray(R.array.cow_breed);

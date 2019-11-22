@@ -126,13 +126,16 @@ public class CattleProfile extends AppCompatActivity {
                 if (cattleType.equals("Buffalo Bull") || cattleType.equals("Bull")) {
                     txtBreedingStatus.setVisibility(View.GONE);
                     status.setVisibility(View.GONE);
+                }else if( breedingStatus.equals("Immature"))
+                {
+                    txtBreedingStatus.setText("Calf in Immature state");
                 }
                 noOfChild.setVisibility(View.GONE);
                 nextHeat.setVisibility(View.GONE);
                 status.setVisibility(View.GONE);
                 btnMilkProduction.setVisibility(View.GONE);
                 btnInseminationDetails.setVisibility(View.GONE);
-                btnMilkProduction.setVisibility(View.GONE);
+                btnHeatDetails.setVisibility(View.GONE);
             }else{
                 nextHeat.setText("Next heat on : "+new SimpleDateFormat("dd/MM/yyyy").format(HeatPrediction.nextHeatCalculate(this,cattle)));
             }
