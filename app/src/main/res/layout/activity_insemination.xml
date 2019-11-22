@@ -6,17 +6,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Insemination">
-    <Button
+    <!--<Button
         android:id="@+id/newBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="New Entry"
         android:layout_gravity="center"
         android:drawableRight="@drawable/add"
-        android:onClick="newEntry"/>
+        android:onClick="newEntry"/>-->
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Insemination Details Found"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginLeft="30dp"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
     <ListView
         android:id="@+id/inseminations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         />
 </LinearLayout>

@@ -162,7 +162,7 @@ public class HeatDetails extends AppCompatActivity{
     public void updateInsemination(View view) {
         Intent intent = new Intent(this,InseminationNewEntry.class);
         intent.putExtra("cattleId",cattleId);
-        intent.putExtra("h_id",heatId);
+        intent.putExtra("hId",heatId);
         startActivity(intent);
     }
 

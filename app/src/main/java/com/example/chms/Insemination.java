@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Insemination extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class Insemination extends AppCompatActivity {
     public static Integer[] cattleIds = null;
     public static String[] inseminationDates = null;
     String cattleId;
+    TextView txtTitle;
     ListView listV;
     InseminationAdapter adapter;
     String[] columns = {};
@@ -30,6 +32,8 @@ public class Insemination extends AppCompatActivity {
         Intent i = getIntent();
         cattleId = i.getStringExtra("cattleId");
         listV = (ListView) findViewById(R.id.inseminations);
+        txtTitle = findViewById(R.id.txt_title);
+
         CHMSDatabase sqlDatabase = new  CHMSDatabase(this);
         SQLiteDatabase db = sqlDatabase.getReadableDatabase();
 
@@ -39,6 +43,7 @@ public class Insemination extends AppCompatActivity {
         inseminationDates = new String[cursor.getCount()];
         ids = new Integer[cursor.getCount()];
         if(cursor.getCount()>0) {
+            txtTitle.setText("Insemination Details");
             for (int j = 0; cursor.isAfterLast() == false; j++) {
                 cattleIds[j] = Integer.parseInt(cattleId.toString());
                 inseminationDates[j] = cursor.getString(cursor.getColumnIndex("date")).toString();
