@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Insemination">
-
     <Button
         android:id="@+id/newBtn"
         android:layout_width="match_parent"
@@ -18,5 +17,6 @@
     <ListView
         android:id="@+id/inseminations"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        />
 </LinearLayout>

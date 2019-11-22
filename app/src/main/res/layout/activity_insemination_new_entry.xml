@@ -16,7 +16,7 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:inputType="number"
-        android:editable="false"
+        android:enabled="false"
         android:background="@drawable/border"
         android:hint="Cattle Unique ID No"
         />

@@ -1,13 +1,17 @@
 package com.example.chms;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class Insemination extends AppCompatActivity {
 
@@ -25,11 +29,11 @@ public class Insemination extends AppCompatActivity {
 
         Intent i = getIntent();
         cattleId = i.getStringExtra("cattleId");
-
+        listV = (ListView) findViewById(R.id.inseminations);
         CHMSDatabase sqlDatabase = new  CHMSDatabase(this);
         SQLiteDatabase db = sqlDatabase.getReadableDatabase();
 
-        Cursor cursor = db.query("insemination",columns,"cuin=?",new String[]{cattleId},null,null,null);
+        Cursor cursor = db.query("insemination",columns,"cuin=?",new String[]{cattleId},null,null,"ins_id DESC");
         cursor.moveToFirst();
         cattleIds = new Integer[cursor.getCount()];
         inseminationDates = new String[cursor.getCount()];
@@ -41,11 +45,35 @@ public class Insemination extends AppCompatActivity {
                 ids[j] = cursor.getInt(cursor.getColumnIndex("ins_id"));
                 cursor.moveToNext();
             }
-
-            listV = (ListView) findViewById(R.id.inseminations);
             adapter = new InseminationAdapter(this, ids,cattleIds, inseminationDates);
             listV.setAdapter(adapter);
         }
+        listV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
+                int item = (Integer) listV.getItemAtPosition(i);
+                CHMSDatabase sqliteHelper = new CHMSDatabase(getApplicationContext());
+                SQLiteDatabase db = sqliteHelper.getReadableDatabase();
+                Cursor cursor = db.query("insemination",new String[]{},"ins_id=?",new String[]{""+item},null,null,null);
+                cursor.moveToFirst();
+                AlertDialog.Builder builder = new AlertDialog.Builder(Insemination.this);
+                builder.setTitle("Insemination details");
+                while(cursor.isAfterLast()==false)
+                {
+                    String[] items = {
+                            ("Cattle id : "+cursor.getString(1)),
+                            "Date : "+cursor.getString(2),
+                            "Time : "+cursor.getString(3),
+                            "Type : "+cursor.getString(4),
+                            "Note : "+cursor.getString(5)};
+                    builder.setItems(items,null);
+                    cursor.moveToNext();
+                }
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
     }
     public void newEntry(View v)
     {

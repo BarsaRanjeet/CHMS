@@ -14,10 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HeatDetailsView"></activity>
-        <activity android:name=".HeatDetails" >
-
-        </activity>
+        <activity android:name=".InseminationDetails"></activity>
+        <activity android:name=".HeatDetailsView" />
+        <activity android:name=".HeatDetails"></activity>
         <activity android:name=".CreateHeatProfile" />
         <activity android:name=".MilkProductionView" />
         <activity

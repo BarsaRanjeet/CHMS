@@ -147,11 +147,13 @@ public class CattleProfile extends AppCompatActivity {
     public void insemination(View v)
     {
         Intent i = new Intent(this,Insemination.class);
+        i.putExtra("cattleId",cattle_id);
         startActivity(i);
     }
     public void milkProduction(View v)
     {
         Intent i = new Intent(this,MilkProduction.class);
+        i.putExtra("cattleId",cattle_id);
         startActivity(i);
     }
     public void heatDetails(View v)
