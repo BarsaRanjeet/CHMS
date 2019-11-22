@@ -2,6 +2,7 @@ package com.example.chms;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -19,7 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class HeatDetails extends AppCompatActivity {
+public class HeatDetails extends AppCompatActivity{
 
     public static String[] probableHeatDates = null;
     public static String[] actualHeatDates = null;
@@ -30,7 +32,6 @@ public class HeatDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heat_details);
-
 
         txtCurrentProbableDate = findViewById(R.id.current_probable);
         btnChange = findViewById(R.id.btn_heat_today);
@@ -77,7 +78,6 @@ public class HeatDetails extends AppCompatActivity {
                 actualHeatDates[i] = cursorHeatDetails.getString(cursorHeatDetails.getColumnIndex("actual_heat_date"));
                 inseminations[i] = cursorHeatDetails.getString(cursorHeatDetails.getColumnIndex("insemination_status"));
 
-                Log.i("HeatDetails",probableHeatDates[i]+"-"+actualHeatDates[i]+"-"+inseminations[i]+"-"+i);
 
             }
             cursorHeatDetails.moveToNext();
@@ -129,5 +129,10 @@ public class HeatDetails extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+
     }
 }
