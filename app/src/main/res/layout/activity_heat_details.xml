@@ -7,7 +7,74 @@
     android:orientation="vertical"
     tools:context=".HeatDetails">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/pending_insemination_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pending Insemination"
+            android:textSize="22dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18dp"
+                android:text="Heat Date"/>
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18dp"
+                android:text="Insemination"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/pending_heat_date"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="18dp"
+                android:text="11/11/2019"/>
+            <Button
+                android:id="@+id/btn_change_insemination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:onClick="updateInsemination"
+                android:text="Update"/>
+            <Button
+                android:id="@+id/btn_hide_pending_insemination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:onClick="noInsemination"
+                android:text="Hide"/>
+        </LinearLayout>
+    </LinearLayout>
+
+ <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next Heat Prediction"
@@ -56,7 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:text="Change"/>
+            android:text="Update"/>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"

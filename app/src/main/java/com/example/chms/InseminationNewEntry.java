@@ -24,7 +24,7 @@ public class InseminationNewEntry extends AppCompatActivity {
 
     final Calendar myCalendar = Calendar.getInstance();
     final Calendar myCurrentTime = Calendar.getInstance();
-    String date,time,cattleId;
+    String date,time,cattleId,heatId;
     EditText note,cuin;
     Spinner spin;
     @Override
@@ -34,6 +34,7 @@ public class InseminationNewEntry extends AppCompatActivity {
 
         Intent i = getIntent();
         cattleId = i.getStringExtra("cattleId");
+        heatId = i.getStringExtra("hId");
         cuin = (EditText)findViewById(R.id.cattleId);
         cuin.setText(cattleId);
         String[] type = {"Select insemination type","Naturally","Artificially"};
@@ -96,12 +97,18 @@ public class InseminationNewEntry extends AppCompatActivity {
         SQLiteDatabase db = sqliteDatabase.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("cuin",cattleId);
+        values.put("h_id",heatId);
         values.put("date",date);
         values.put("time",time);
         values.put("type",spin.getSelectedItem().toString());
         values.put("note",note.getText().toString());
         db.insert("insemination",null,values);
-        Toast.makeText(getApplicationContext(),"Successfully inserted insemination detail",Toast.LENGTH_SHORT).show();
+
+        ContentValues updateValues = new ContentValues();
+        updateValues.put("insemination_status","Yes");
+        db.update("heat_table",updateValues,"h_id=?",new String[]{heatId});
+
+        Toast.makeText(getApplicationContext(),"Successfully Updated insemination detail",Toast.LENGTH_SHORT).show();
         Intent i = new Intent(this,Insemination.class);
         i.putExtra("cattleId",cattleId);
         startActivity(i);
